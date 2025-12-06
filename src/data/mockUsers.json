@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "titulo": "El Volcán de Bicarbonato",
+        "descripcion": "¡Crea una erupción segura usando ingredientes de tu cocina!",
+        "categoria": "Química"
+    },
+    {
+        "id": 2,
+        "titulo": "Ladrillo Virtual #1",
+        "descripcion": "Este es un ejemplo de cómo se vería una donación en el futuro.",
+        "categoria": "Muro"
+    },
+    {
+        "id": 3,
+        "titulo": "¿Por qué flotan los barcos?",
+        "descripcion": "Entiende el principio de Arquímedes con papel aluminio.",
+        "categoria": "Física"
+    }
+]
