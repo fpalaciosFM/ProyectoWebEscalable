@@ -1,16 +1,83 @@
-# React + Vite
+# 🔭 Portal de ciencia - Proyecto de Divulgación
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este proyecto es una aplicación web SPA (Single Page Application) diseñada para la divulgación científica. Actualmente funciona como un prototipo estático de alto rendimiento, pero cuenta con una arquitectura escalable preparada para migrar a un backend en tiempo real (Firebase/Supabase) sin necesidad de reescribir el frontend.
 
-Currently, two official plugins are available:
+## 🚀 Stack Tecnológico
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+* **Core:** React + Vite
+* **Lenguaje:** JavaScript (ES6+)
+* **Enrutamiento:** React Router DOM (HashRouter)
+* **Despliegue:** GitHub Pages (automatizado con `gh-pages`)
+* **Estilos:** CSS estándar (listo para migrar a Tailwind CSS)
 
-## React Compiler
+## 🛠️ Requisitos Previos
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Para ejecutar este proyecto localmente necesitas tener instalado:
 
-## Expanding the ESLint configuration
+* **Node.js** (Versión LTS recomendada): [Descargar aquí](https://nodejs.org/)
+* **Git**: [Descargar aquí](https://git-scm.com/)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 📥 Instalación y Configuración
+
+Sigue estos pasos para clonar el repositorio y levantar el entorno de desarrollo:
+
+1.  **Clonar el repositorio:**
+    ```bash
+    git clone https://github.com/fpalaciosFM/ProyectoWebEscalable.git
+    ```
+
+2.  **Entrar a la carpeta del proyecto:**
+    ```bash
+    cd ProyectoWebEscalable
+    ```
+
+3.  **Instalar dependencias:**
+    Este paso es crucial para descargar las librerías necesarias (React, Vite, etc.).
+    ```bash
+    npm install
+    ```
+
+## 💻 Ejecución Local (Modo Desarrollo)
+
+Para iniciar el servidor local con recarga en caliente (HMR):
+
+```bash
+npm run dev
+```
+
+Una vez ejecutado, la aplicación estará disponible generalmente en: `http://localhost:5173/`
+
+## 📂 Arquitectura Escalable
+
+El proyecto sigue una arquitectura de **"Service Layer"** para facilitar la futura integración de Backend:
+
+* `src/services/`: **Capa de Abstracción.** Aquí reside la lógica de conexión a datos.
+    * *Estado actual:* Lee de un archivo JSON local (`mockUsers.json`) simulando latencia de red.
+    * *Futuro:* Se reemplazará por llamadas a API.
+* `src/pages/`: Vistas principales de la aplicación.
+* `src/components/`: Piezas reutilizables de la interfaz.
+* `src/data/`: Datos simulados (Mock Data) para desarrollo offline.
+
+## 🌍 Despliegue (Deploy)
+
+El proyecto está configurado para desplegarse automáticamente en **GitHub Pages**.
+
+1.  Asegúrate de que tus cambios están guardados en la rama `main`.
+2.  Ejecuta el script de despliegue en tu terminal:
+    ```bash
+    npm run deploy
+    ```
+3.  Este comando compilará el proyecto en la carpeta `dist` y lo subirá a la rama `gh-pages`.
+
+> **⚠️ Nota sobre Permisos:** Si el despliegue falla en GitHub Actions, ve a *Settings > Code and automation > Actions > General* en tu repositorio, y en "Workflow permissions" selecciona **"Read and write permissions"**.
+
+## 🤝 Roadmap del Proyecto
+
+* [x] Estructura base SPA (Vite + React)
+* [x] Navegación (React Router)
+* [ ] Integración de Tailwind CSS
+* [ ] Backend en tiempo real (Firebase)
+* [ ] Pasarela de pago
+
+---
+Para la divulgación de la ciencia.
