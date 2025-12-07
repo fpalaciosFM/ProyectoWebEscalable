@@ -1,55 +1,47 @@
-import { useState, useEffect } from 'react'
 import { HashRouter, Routes, Route, Link } from 'react-router-dom'
+import { useState, useEffect } from 'react'
 import { getContenido } from './services/user'
-import './App.css' // Mantenemos los estilos base por ahora
 
-// 1. Componente para la página de Inicio
-const Home = () => (
-  <div style={{ padding: '2rem', textAlign: 'center' }}>
-    <h1>🔭 Muro de la Ciencia</h1>
-    <p>Bienvenido al futuro sitio de divulgación científica.</p>
-    <div style={{ marginTop: '20px' }}>
-      <Link to="/experimentos" style={{ padding: '10px 20px', backgroundColor: '#646cff', color: 'white', borderRadius: '5px', textDecoration: 'none' }}>
-        Ver Experimentos y Muro
-      </Link>
-    </div>
-  </div>
-);
+// IMPORTAMOS LA PÁGINA NUEVA
+import Home from './pages/Home'
 
-// 2. Componente para la lista de contenidos
+// --- Mantenemos el componente de lista de contenidos aquí por ahora ---
+// (En el futuro, lo ideal sería mover esto a src/pages/Experimentos.jsx)
 const ListaContenidos = () => {
   const [datos, setDatos] = useState([]);
   const [cargando, setCargando] = useState(true);
 
   useEffect(() => {
-    // Pedimos los datos al servicio al cargar la página
     getContenido().then((resultado) => {
       setDatos(resultado);
       setCargando(false);
     });
   }, []);
 
-  if (cargando) return <h2>Cargando conocimientos... ⏳</h2>;
+  if (cargando) return <div className="text-center p-10 text-xl">Cargando ciencia... ⏳</div>;
 
   return (
-    <div style={{ padding: '2rem' }}>
-      <Link to="/">⬅ Volver al inicio</Link>
-      <h2>Experimentos y Ladrillos</h2>
+    <div className="min-h-screen bg-slate-50 p-8">
+      <div className="max-w-4xl mx-auto">
+        <Link to="/" className="text-indigo-600 hover:underline mb-4 inline-block font-bold">⬅ Volver al inicio</Link>
+        <h2 className="text-3xl font-bold mb-6 text-gray-800">Experimentos y Ladrillos</h2>
 
-      <div style={{ display: 'grid', gap: '1rem', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))' }}>
-        {datos.map((item) => (
-          <div key={item.id} style={{ border: '1px solid #ccc', padding: '1rem', borderRadius: '8px', background: '#242424' }}>
-            <h3>{item.titulo}</h3>
-            <p>{item.descripcion}</p>
-            <small style={{ color: '#888' }}>Etiqueta: {item.categoria}</small>
-          </div>
-        ))}
+        <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+          {datos.map((item) => (
+            <div key={item.id} className="bg-white border border-gray-200 p-6 rounded-lg shadow-md hover:shadow-lg transition">
+              <h3 className="text-xl font-bold text-indigo-700 mb-2">{item.titulo}</h3>
+              <p className="text-gray-600 mb-4">{item.descripcion}</p>
+              <span className="bg-indigo-100 text-indigo-800 text-xs font-semibold px-2.5 py-0.5 rounded">
+                {item.categoria}
+              </span>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
 };
 
-// 3. Configuración de Rutas
 function App() {
   return (
     <HashRouter>
