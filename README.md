@@ -8,7 +8,7 @@ Este proyecto es una aplicación web SPA (Single Page Application) diseñada par
 * **Lenguaje:** JavaScript (ES6+)
 * **Enrutamiento:** React Router DOM (HashRouter)
 * **Despliegue:** GitHub Pages (automatizado con `gh-pages`)
-* **Estilos:** CSS estándar (listo para migrar a Tailwind CSS)
+* **Estilos:** Tailwind CSS v4
 
 ## 🛠️ Requisitos Previos
 
@@ -75,7 +75,7 @@ El proyecto está configurado para desplegarse automáticamente en **GitHub Page
 
 * [x] Estructura base SPA (Vite + React)
 * [x] Navegación (React Router)
-* [ ] Integración de Tailwind CSS
+* [x] Integración de Tailwind CSS
 * [ ] Backend en tiempo real (Firebase)
 * [ ] Pasarela de pago
 
