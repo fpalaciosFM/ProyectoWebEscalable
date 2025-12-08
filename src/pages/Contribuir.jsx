@@ -1,6 +1,7 @@
 import { useSearchParams, Link } from 'react-router-dom';
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
+import FAQCard from '../components/FAQCard';
 import { useScrollTop } from '../hooks/useScrollTop';
 import { donationOptions, volunteerRoles, proposalTypes, faqItems } from '../data/contribuirData';
 
@@ -288,10 +289,7 @@ const Contribuir = () => {
                 <h2 className="text-3xl font-bold mb-8 text-center text-gray-800">Preguntas Frecuentes</h2>
                 <div className="space-y-4">
                     {faqItems.map((item) => (
-                        <details key={item.id} className="bg-white p-6 rounded-lg shadow hover:shadow-md transition cursor-pointer">
-                            <summary className="font-bold text-lg text-indigo-600">{item.question}</summary>
-                            <p className="text-gray-700 mt-4">{item.answer}</p>
-                        </details>
+                        <FAQCard key={item.id} question={item.question} answer={item.answer} />
                     ))}
                 </div>
             </div>

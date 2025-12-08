@@ -99,19 +99,23 @@ export const proposalTypes = [
 
 export const faqItems = [
     {
-        pregunta: '¿Cuál es la mejor forma de contribuir?',
-        respuesta: 'La mejor forma es la que mejor se ajusta a ti. Todos los aportes son valiosos: dinero, tiempo, ideas y conexiones. Elige lo que te sientas cómodo dando.'
+        id: 1,
+        question: '¿Cuál es la mejor forma de contribuir?',
+        answer: 'La mejor forma es la que mejor se ajusta a ti. Todos los aportes son valiosos: dinero, tiempo, ideas y conexiones. Elige lo que te sientas cómodo dando.'
     },
     {
-        pregunta: '¿Recibiré recibos de mis donaciones?',
-        respuesta: 'Sí. Cada donación genera un recibo automático. Además, recibirás acceso a reportes trimestrales que muestran cómo se usaron tus aportes.'
+        id: 2,
+        question: '¿Recibiré recibos de mis donaciones?',
+        answer: 'Sí. Cada donación genera un recibo automático. Además, recibirás acceso a reportes trimestrales que muestran cómo se usaron tus aportes.'
     },
     {
-        pregunta: '¿Necesito experiencia para ser voluntario?',
-        respuesta: 'No. Aunque la experiencia es valiosa, lo más importante es tu disposición a aprender y tu compromiso con la educación. Proporcionamos capacitación en todos los roles.'
+        id: 3,
+        question: '¿Necesito experiencia para ser voluntario?',
+        answer: 'No. Aunque la experiencia es valiosa, lo más importante es tu disposición a aprender y tu compromiso con la educación. Proporcionamos capacitación en todos los roles.'
     },
     {
-        pregunta: '¿Cuánto tiempo debo dedicar?',
-        respuesta: 'Depende del rol. Algunos requieren 2-4 horas/mes, otros son completamente flexibles (remoto). Tú decides cuánto tiempo dedicar.'
+        id: 4,
+        question: '¿Cuánto tiempo debo dedicar?',
+        answer: 'Depende del rol. Algunos requieren 2-4 horas/mes, otros son completamente flexibles (remoto). Tú decides cuánto tiempo dedicar.'
     }
 ];
