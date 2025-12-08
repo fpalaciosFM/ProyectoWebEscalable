@@ -2,6 +2,8 @@
 import { Link } from 'react-router-dom';
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
+import Hero from '../components/Hero';
+import ExplorationCard from '../components/ExplorationCard';
 import { useScrollTop } from '../hooks/useScrollTop';
 import { exploracionCards, contribucionCards, impactStats } from '../data/homeData';
 
@@ -24,39 +26,28 @@ const Home = () => {
             {/* 1. NAVBAR / ENCABEZADO */}
             <NavBar />
 
-            {/* 2. HERO SECTION - Mejorado */}
-            <header className="relative bg-hero-rainbow text-white py-24 px-6 text-center overflow-hidden">
-                {/* Decoración de fondo */}
-                <div className="absolute inset-0 opacity-10">
-                    <div className="absolute top-10 left-10 text-6xl">🧪</div>
-                    <div className="absolute bottom-20 right-20 text-5xl">🔬</div>
-                    <div className="absolute top-1/2 right-10 text-5xl">📚</div>
+            {/* 2. HERO SECTION */}
+            <Hero 
+                gradientClass="bg-hero-rainbow"
+                title="Descubre la Magia de la Ciencia ✨"
+                subtitle="Aprende, experimenta y construye el futuro con nosotros. Una plataforma interactiva para pequeños y grandes científicos."
+                padding="py-24 relative overflow-hidden"
+            >
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                    <Link
+                        to="/experimentos"
+                        className="btn-main inline-block"
+                    >
+                        🔬 Explorar Experimentos
+                    </Link>
+                    <Link
+                        to="/nosotros"
+                        className="btn-main inline-block"
+                    >
+                        👥 Conocer nuestro equipo
+                    </Link>
                 </div>
-
-                <div className="relative z-10 max-w-3xl mx-auto">
-                    <h1 className="text-5xl md:text-7xl font-extrabold mb-6 leading-tight">
-                        Descubre la Magia de la Ciencia ✨
-                    </h1>
-                    <p className="text-xl md:text-2xl mb-10 opacity-95 leading-relaxed">
-                        Aprende, experimenta y construye el futuro con nosotros. 
-                        Una plataforma interactiva para pequeños y grandes científicos.
-                    </p>
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                        <Link
-                            to="/experimentos"
-                            className="btn-main inline-block"
-                        >
-                            🔬 Explorar Experimentos
-                        </Link>
-                        <Link
-                            to="/nosotros"
-                            className="btn-main inline-block"
-                        >
-                            👥 Conocer nuestro equipo
-                        </Link>
-                    </div>
-                </div>
-            </header>
+            </Hero>
 
             {/* 3. SECCIÓN DE EXPLORACIÓN - 3 áreas principales */}
             <section className="py-20 px-6 bg-slate-50">
@@ -68,16 +59,14 @@ const Home = () => {
 
                     <div className="grid md:grid-cols-3 gap-8">
                         {exploracionCards.map((card) => (
-                            <Link to={card.href} key={card.id} className="group cursor-pointer">
-                                <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition transform hover:-translate-y-2 border-t-4" style={{borderTopColor: card.borderColor}}>
-                                    <div className="text-6xl mb-6">{card.emoji}</div>
-                                    <h3 className="text-2xl font-bold mb-3 text-primary group-hover:opacity-75 transition">{card.titulo}</h3>
-                                    <p className="text-muted mb-6">{card.descripcion}</p>
-                                    <span className="badge-primary">
-                                        Explorar →
-                                    </span>
-                                </div>
-                            </Link>
+                            <ExplorationCard
+                                key={card.id}
+                                titulo={card.titulo}
+                                emoji={card.emoji}
+                                descripcion={card.descripcion}
+                                href={card.href}
+                                borderColor={card.borderColor}
+                            />
                         ))}
                     </div>
                 </div>
