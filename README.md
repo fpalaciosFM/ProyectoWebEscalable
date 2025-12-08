@@ -9,7 +9,8 @@ Proyecto web para apoyar talleres de divulgación científica dirigidos a niños
   - **Contribuir:** tabs para Donar, Ser Voluntario y Proponer Experimentos.
   - **Nosotros:** misión, visión, qué hacemos, impacto/números clave, equipo, aliados, testimonios, cronograma y contacto.
 - Componentes reutilizables: `NavBar` (responsive con hamburger), `TeamCard`, `StatsCounter`, `SocialIcon`.
-- Integración de `react-icons` para iconos de redes sociales optimizados y centrados.
+- Integración de `react-icons` para iconos de redes sociales optimizados.
+- **UX mejorada:** scroll automático al tope al navegar entre páginas para mejor experiencia de usuario.
 
 ## 🚀 Stack Tecnológico
 
@@ -18,7 +19,7 @@ Proyecto web para apoyar talleres de divulgación científica dirigidos a niños
 - React Router DOM (HashRouter)
 - Tailwind CSS v4
 - ESLint
-- react-icons (iconos optimizados para redes sociales)
+- react-icons
 - GitHub Pages (gh-pages)
 
 ## 🛠️ Requisitos Previos

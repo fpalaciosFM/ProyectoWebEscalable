@@ -1,4 +1,5 @@
 import React from 'react';
+import { useEffect } from 'react';
 import NavBar from '../components/NavBar';
 import TeamCard from '../components/TeamCard';
 import StatsCounter from '../components/StatsCounter';
@@ -16,6 +17,11 @@ const Nosotros = () => {
         { name: 'Fernando Palacios', role: 'Voluntario y Tech', bio: 'Divulgación de ciencia y programador de plataforma web' },
     ];
 
+    // Scroll to top when component mounts
+    useEffect(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, []);
+
     return (
         <div className="min-h-screen bg-slate-50">
             <NavBar />
@@ -26,8 +32,8 @@ const Nosotros = () => {
                         <h1 className="text-4xl md:text-5xl font-extrabold mb-4">Nosotros</h1>
                         <p className="text-lg opacity-90 mb-6">Conectamos niños con experiencias prácticas de ciencia, promoviendo curiosidad y pensamiento crítico.</p>
                         <div className="flex gap-3">
-                            <Link to="/contribuir?tab=donar" className="bg-amber-400 text-black font-bold py-3 px-5 rounded-lg">Donar</Link>
-                            <Link to="/contribuir?tab=voluntario" className="bg-white text-indigo-600 font-semibold py-3 px-5 rounded-lg">Ser Voluntario</Link>
+                            <Link to={{ pathname: "/contribuir", search: "?tab=donar" }} className="bg-amber-400 text-black font-bold py-3 px-5 rounded-lg">Donar</Link>
+                            <Link to={{ pathname: "/contribuir", search: "?tab=voluntario" }} className="bg-white text-indigo-600 font-semibold py-3 px-5 rounded-lg">Ser Voluntario</Link>
                         </div>
                     </div>
 
@@ -348,8 +354,8 @@ const Nosotros = () => {
                     <h3 className="text-xl font-bold mb-2">¿Te interesa colaborar?</h3>
                     <p className="text-gray-700 mb-4">Puedes donar, apuntarte como voluntario o proponernos un experimento. ¡Tu aporte cuenta!</p>
                     <div className="flex gap-3">
-                        <Link to="/contribuir?tab=donar" className="bg-indigo-600 text-white font-bold py-2 px-4 rounded-lg">Donar</Link>
-                        <Link to="/contribuir?tab=voluntario" className="bg-white text-indigo-600 font-semibold py-2 px-4 rounded-lg">Ser Voluntario</Link>
+                        <Link to={{ pathname: "/contribuir", search: "?tab=donar" }} className="bg-indigo-600 text-white font-bold py-2 px-4 rounded-lg">Donar</Link>
+                        <Link to={{ pathname: "/contribuir", search: "?tab=voluntario" }} className="bg-white text-indigo-600 font-semibold py-2 px-4 rounded-lg">Ser Voluntario</Link>
                     </div>
                 </section>
             </main>

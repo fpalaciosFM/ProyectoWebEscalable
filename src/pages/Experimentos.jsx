@@ -14,6 +14,11 @@ const ListaExperimentos = () => {
     const [datos, setDatos] = useState([]);
     const [cargando, setCargando] = useState(true);
 
+    // Scroll to top when component mounts
+    useEffect(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, []);
+
     // Ejecutar la petición simulada al montar el componente
     useEffect(() => {
         getExperimentos().then((resultado) => {

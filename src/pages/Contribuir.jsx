@@ -1,4 +1,5 @@
-import { useSearchParams, Link } from 'react-router-dom';
+import { useSearchParams, Link, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 import NavBar from '../components/NavBar';
 
 /**
@@ -13,7 +14,13 @@ import NavBar from '../components/NavBar';
 
 const Contribuir = () => {
     const [searchParams] = useSearchParams();
+    const location = useLocation();
     const activeTab = searchParams.get('tab') || 'donar';
+
+    // Scroll to top whenever the location changes (including query params)
+    useEffect(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, [location]);
 
     return (
         <div className="min-h-screen bg-slate-50">

@@ -1,5 +1,6 @@
 // src/pages/Home.jsx
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
 import NavBar from '../components/NavBar';
 
 /**
@@ -8,6 +9,11 @@ import NavBar from '../components/NavBar';
  * - Importante: usa `NavBar` como encabezado común de la aplicación
  */
 const Home = () => {
+    // Scroll to top when component mounts
+    useEffect(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, []);
+
     return (
         <div className="min-h-screen bg-slate-50 font-sans text-gray-800">
 
