@@ -9,8 +9,22 @@ import EventosNoticias from './pages/EventosNoticias'
 
 /**
  * App
- * Punto de entrada de enrutamiento de la SPA. Usamos `HashRouter` para
- * mantener compatibilidad con GitHub Pages y rutas estáticas.
+ * Punto de entrada de enrutamiento de la SPA. 
+ * Usamos `HashRouter` para mantener compatibilidad con GitHub Pages y rutas estáticas.
+ * 
+ * Rutas:
+ * - "/" → Home (landing page)
+ * - "/experimentos" → ListaExperimentos
+ * - "/contribuir" → Contribuir (donar, voluntario, proponer)
+ * - "/nosotros" → Nosotros (historia, equipo, impacto)
+ * - "/galeria" → Galeria (galería de fotos)
+ * - "/eventos-noticias" → EventosNoticias (eventos, noticias, calendario)
+ * 
+ * Arquitectura:
+ * - Componentes reutilizables: NavBar (en todas las páginas), Footer, Hero, Cards temáticas
+ * - Datos centralizados: src/data/*.js para fácil mantenimiento y futura integración con APIs
+ * - Hooks personalizados: useScrollTop para scroll automático al navegar
+ * - Sistema de diseño: variables CSS semánticas + clases reutilizables (.btn-main, .card-*, etc)
  */
 function App() {
   return (

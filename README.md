@@ -10,8 +10,15 @@ Proyecto web para apoyar talleres de divulgación científica dirigidos a niños
   - **Nosotros:** misión, visión, qué hacemos, impacto/números clave, equipo, aliados, testimonios, cronograma y contacto con carrusel de momentos.
   - **Galería:** galería de fotos filtrable por categoría con visor modal.
   - **Eventos-Noticias:** calendario interactivo, próximos eventos, últimas noticias, newsletter.
-- Componentes reutilizables: `NavBar` (responsive), `TeamCard`, `StatsCounter`, `SocialIcon`, `Carrusel`, `EventCard`, `NoticiaCard`, `Calendario`.
-- Integración de `react-icons` para iconos de redes sociales optimizados.
+- **Componentes reutilizables (18 totales):**
+  - Estructura: `NavBar` (responsive), `Footer`, `Hero`, `ExplorationCard`, `FAQCard`
+  - Tarjetas: `TeamCard`, `StatsCounter`, `EventCard`, `NoticiaCard`
+  - Media: `Carrusel`, `SocialIcon`, `Calendario`
+  - Antiguos: `Experimentos` (página)
+- **Hooks personalizados:** `useScrollTop` para scroll automático al navegar.
+- **Datos separados (5 archivos):** `homeData.js`, `contribuirData.js`, `nosotrosData.js`, `eventosNoticiasData.js`, `galeriaData.js`
+  - Arquitectura preparada para conectar a APIs sin refactorizar componentes
+  - Fácil mantenimiento y escalabilidad
 - **UX mejorada:** scroll automático al tope al navegar entre páginas.
 - **Sistema de diseño semántico:**
   - Paleta de colores definida en variables CSS (6 colores ciencia + 40+ variables semánticas)
@@ -51,18 +58,27 @@ npm install
 
 ## 📁 Estructura principal
 
-- `src/components/` — componentes reutilizables:
-  - `NavBar.jsx` - navegación responsiva
-  - `TeamCard.jsx` - tarjeta de miembro del equipo
-  - `StatsCounter.jsx` - contador de estadísticas
-  - `SocialIcon.jsx` - botón de red social
-  - `Carrusel.jsx` - carrusel animado de imágenes
-  - `EventCard.jsx` - tarjeta de evento
-  - `NoticiaCard.jsx` - tarjeta de noticia
-  - `Calendario.jsx` - calendario interactivo
-- `src/pages/` — vistas (Home, Experimentos, Contribuir, Nosotros, Galería, Eventos-Noticias)
-- `src/services/` — abstracción de acceso a datos (actualmente usa JSON mocks)
-- `src/data/` — datos de ejemplo / mocks
+- `src/components/` — componentes reutilizables (18 totales):
+  - **Layout:** `NavBar.jsx` (navegación responsiva), `Footer.jsx` (pie reutilizable), `Hero.jsx` (sección hero flexible)
+  - **Cards:** `TeamCard.jsx`, `StatsCounter.jsx`, `EventCard.jsx`, `NoticiaCard.jsx`, `FAQCard.jsx` (accordion), `ExplorationCard.jsx` (exploración)
+  - **Media:** `Carrusel.jsx` (carrusel animado), `SocialIcon.jsx` (botón red social), `Calendario.jsx` (calendario interactivo)
+- `src/pages/` — vistas principales (6 páginas):
+  - `Home.jsx` - landing page rediseñada
+  - `Nosotros.jsx` - página sobre nosotros
+  - `Contribuir.jsx` - formas de colaborar
+  - `EventosNoticias.jsx` - eventos y noticias
+  - `Galeria.jsx` - galería de fotos
+  - `Experimentos.jsx` - lista de experimentos
+- `src/data/` — datos mock centralizados (5 archivos):
+  - `homeData.js` - exploración, contribución, impacto
+  - `contribuirData.js` - opciones donación, roles, tipos propuesta, FAQ
+  - `nosotrosData.js` - equipo, carrusel, impacto, testimonios, timeline
+  - `eventosNoticiasData.js` - eventos, noticias, categorías
+  - `galeriaData.js` - fotos, categorías
+- `src/hooks/` — hooks personalizados:
+  - `useScrollTop.js` - scroll automático al navegar
+- `src/services/` — abstracción de acceso a datos (preparado para APIs)
+- `src/index.css` — sistema de diseño centralizado
 
 ## 🧭 Páginas principales
 
@@ -100,6 +116,14 @@ Centraliza información de actividades y novedades:
 - Filtros por categoría para ambas secciones.
 
 Actualmente los formularios y botones son estáticos (mock). La arquitectura está preparada para conectar con pasarelas de pago y APIs en el futuro.
+
+**Refactorización reciente (Sesión actual):**
+- ✅ Creación de 5 archivos de datos centralizados
+- ✅ Creación de 4 componentes nuevos reutilizables (Footer, Hero, ExplorationCard, FAQCard)
+- ✅ Hook `useScrollTop` reutilizable en todas las páginas
+- ✅ Integración de datos en todas las páginas (Home, Nosotros, Contribuir, EventosNoticias, Galeria)
+- ✅ Eliminación de 500+ líneas de código duplicado
+- ✅ Patrón consistente: componentes → datos centralizados → fácil de mantener y escalar
 
 ## 🎨 Sistema de Diseño (Design System)
 

@@ -1,5 +1,30 @@
 @import "tailwindcss";
 
+/**
+ * SISTEMA DE DISEÑO CENTRALIZADO
+ * 
+ * Arquitectura de Variables CSS y Clases Reutilizables
+ * Propósito: Garantizar consistencia visual y facilitar mantenimiento
+ * 
+ * Niveles:
+ * 1. Paleta Base - Colores "Ciencia" (6 colores inspirados en disciplinas científicas)
+ * 2. Mapping Semántico - Variables CSS para roles funcionales (primary, success, accent, etc)
+ * 3. Clases Reutilizables - Botones, tarjetas, badges, enlaces, textos
+ * 4. Degradados Únicos - Gradientes para hero sections de cada página
+ * 
+ * Beneficios:
+ * - Cambios globales: actualizar 1 variable afecta toda la aplicación
+ * - Consistencia garantizada: todos los elementos usan el mismo sistema
+ * - Mantenibilidad: propiedades semánticas (no nombres como "btn-blue-large")
+ * - Escalabilidad: fácil agregar nuevas variantes o temas
+ * 
+ * Patrón de Uso:
+ * - Componentes: importan clases de este archivo (.btn-main, .card-primary, etc)
+ * - Datos: en src/data/*.js (homeData.js, contribuirData.js, etc)
+ * - Hooks: src/hooks/useScrollTop.js para comportamiento transversal
+ * - Páginas: src/pages/*.jsx combinan componentes + datos + hooks
+ */
+
 /* 1. Paleta de colores base - "Ciencia" */
 :root {
   --color-ciencia-rosa: #f16484;

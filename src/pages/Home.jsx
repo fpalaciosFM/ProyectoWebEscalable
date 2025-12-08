@@ -10,9 +10,20 @@ import { exploracionCards, contribucionCards, impactStats } from '../data/homeDa
 /**
  * Home Page - Página de Inicio Completa
  * Landing page rediseñada que presenta todas las secciones de la aplicación.
- * Incluye:
+ * 
+ * Patrón Arquitectónico:
+ * - Datos: importa de src/data/homeData.js (fácil mantener/actualizar)
+ * - Componentes: Hero (flexible), ExplorationCard (reutilizable), Footer (consistente)
+ * - Hook: useScrollTop para scroll automático al navegar aquí
+ * - Estilo: clases CSS semánticas (.btn-main, .card-*, etc) del sistema centralizado
+ * 
+ * Este patrón se replica en todas las páginas para consistencia y escalabilidad.
+ * 
+ * Secciones:
  * - Hero section con CTA principal
  * - Exploración de contenido (Experimentos, Galería, Eventos)
+ * - Cómo contribuir (Donar, Voluntario, Proponer)
+ * - Impacto y estadísticas
  * - Presentación de equipo (teaser a Nosotros)
  * - Formas de contribuir
  * - Footer con navegación y redes sociales
