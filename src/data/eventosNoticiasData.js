@@ -105,17 +105,6 @@ export const noticias = [
     }
 ];
 
-export const categoriesEventos = [
-    { id: 'todos', label: 'Todos' },
-    { id: 'taller', label: 'Talleres' },
-    { id: 'conferencia', label: 'Conferencias' },
-    { id: 'evento', label: 'Eventos' },
-    { id: 'reunion', label: 'Reuniones' }
-];
+export const categoriesEventos = ['todos', 'taller', 'conferencia', 'evento', 'reunion'];
 
-export const categoriesNoticias = [
-    { id: 'todos', label: 'Todos' },
-    { id: 'logros', label: 'Logros' },
-    { id: 'novedades', label: 'Novedades' },
-    { id: 'recursos', label: 'Recursos' }
-];
+export const categoriesNoticias = ['todos', 'logros', 'novedades', 'recursos'];
