@@ -1,23 +1,15 @@
 // src/pages/Home.jsx
 import { Link } from 'react-router-dom';
+import NavBar from '../components/NavBar';
 
 const Home = () => {
     return (
         <div className="min-h-screen bg-slate-50 font-sans text-gray-800">
 
             {/* 1. NAVBAR / ENCABEZADO */}
-            <nav className="flex justify-between items-center p-6 bg-white shadow-md">
-                <div className="text-2xl font-bold text-indigo-600 flex items-center gap-2">
-                    ⚛️ Puentes de 100cia
-                </div>
-                <div className="space-x-4">
-                    {/* Enlaces de navegación (puedes agregar más luego) */}
-                    <Link to="/experimentos" className="text-gray-600 hover:text-indigo-600 font-medium">Experimentos</Link>
-                    <a href="#nosotros" className="text-gray-600 hover:text-indigo-600 font-medium">Nosotros</a>
-                </div>
-            </nav>
+            <NavBar />
 
-            {/* 2. HERO SECTION (La parte principal que llama la atención) */}
+            {/* 2. HERO SECTION */}
             <header className="bg-hero-rainbow text-white py-20 px-6 text-center">
                 <h1 className="text-4xl md:text-6xl font-extrabold mb-4">
                     Descubre la Magia de la Ciencia 🧪
