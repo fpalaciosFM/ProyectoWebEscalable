@@ -5,18 +5,20 @@ Proyecto web para apoyar talleres de divulgación científica dirigidos a niños
 ## 🧩 Estado actual y novedades
 
 - Sitio base construido con React + Vite.
-- Páginas principales: `Home`, `Experimentos` y `Contribuir` (esta última añade tabs para **Donar**, **Ser Voluntario** y **Proponer Experimentos**).
-- Se añadió un componente reutilizable `NavBar` con control de ruta activa y dropdown para `Contribuir`.
-
-Cambios recientes (commit): `16cee47` — `feat(ui): añadir NavBar reutilizable y página Contribuir`.
+- Páginas principales: `Home`, `Experimentos`, `Contribuir` y `Nosotros`.
+  - **Contribuir:** tabs para Donar, Ser Voluntario y Proponer Experimentos.
+  - **Nosotros:** misión, visión, qué hacemos, impacto/números clave, equipo, aliados, testimonios, cronograma y contacto.
+- Componentes reutilizables: `NavBar` (responsive con hamburger), `TeamCard`, `StatsCounter`, `SocialIcon`.
+- Integración de `react-icons` para iconos de redes sociales optimizados y centrados.
 
 ## 🚀 Stack Tecnológico
 
 - React 19
 - Vite
 - React Router DOM (HashRouter)
-- Tailwind CSS
+- Tailwind CSS v4
 - ESLint
+- react-icons (iconos optimizados para redes sociales)
 - GitHub Pages (gh-pages)
 
 ## 🛠️ Requisitos Previos
@@ -42,18 +44,29 @@ npm install
 
 ## 📁 Estructura principal
 
-- `src/components/` — componentes reutilizables (p. ej. `NavBar.jsx`)
-- `src/pages/` — vistas (Home, Experimentos, Contribuir)
+- `src/components/` — componentes reutilizables (`NavBar.jsx`, `TeamCard.jsx`, `StatsCounter.jsx`, `SocialIcon.jsx`)
+- `src/pages/` — vistas (Home, Experimentos, Contribuir, Nosotros)
 - `src/services/` — abstracción de acceso a datos (actualmente usa JSON mocks)
 - `src/data/` — datos de ejemplo / mocks
 
-## 🧭 Sobre la página `Contribuir`
+## 🧭 Páginas principales
 
-La página `/contribuir` ofrece tres vías para apoyar el proyecto:
+### Contribuir (`/contribuir`)
+Ofrece tres vías para apoyar el proyecto:
+- **Donar Fondos:** opciones predefinidas y desglose de destino de fondos.
+- **Ser Voluntario:** roles disponibles y formulario de interés.
+- **Proponer Experimentos:** envío de propuestas con criterios de aceptación.
 
-- **Donar Fondos:** opciones predefinidas (ej. $10, $50, $200) y explicación de destino de fondos.
-- **Ser Voluntario:** roles disponibles (facilitador, asistente digital, creador de contenido, coordinador de alianzas) y formulario de interés.
-- **Proponer Experimentos:** permite enviar propuestas con criterios de aceptación (seguridad, accesibilidad, relevancia para 5–12 años).
+### Nosotros (`/nosotros`)
+Página informativa con diseño ilustrado que incluye:
+- **Misión y Visión:** propósito del proyecto y metas a 5 años.
+- **Qué hacemos:** talleres, recursos abiertos, formación docente, eventos, kits.
+- **Impacto / Números clave:** métricas visuales (niños impactados, talleres, escuelas, voluntarios).
+- **Equipo:** tarjetas con avatares SVG, nombre, rol y bio.
+- **Aliados:** categorías (escuelas, centros culturales, ONG) con cards descriptivas.
+- **Testimonios:** citas de beneficiarios (padres, docentes, voluntarios).
+- **Cronograma:** línea de tiempo con hitos desde 2019 hasta próximos pasos.
+- **Contacto:** email, teléfono, ubicación, formulario de contacto y botones de redes sociales.
 
 Actualmente los formularios y botones son estáticos (mock). La arquitectura está preparada para conectar con pasarelas de pago y APIs en el futuro.
 

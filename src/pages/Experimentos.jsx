@@ -31,7 +31,7 @@ const ListaExperimentos = () => {
             <NavBar />
             <div className="p-8">
                 <div className="max-w-4xl mx-auto">
-                    <h2 className="text-3xl font-bold mb-6 text-gray-800">Experimentos y Ladrillos</h2>
+                    <h2 className="text-3xl font-bold mb-6 text-gray-800">Experimentos</h2>
 
                     {/* Grid de tarjetas con experimentos */}
                     <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
