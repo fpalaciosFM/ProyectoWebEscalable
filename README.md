@@ -5,25 +5,28 @@ Proyecto web para apoyar talleres de divulgación científica dirigidos a niños
 ## 🧩 Estado actual y novedades
 
 - Sitio base construido con React + Vite.
-- Páginas principales: `Home`, `Experimentos`, `Contribuir`, `Nosotros`, `Galería` y `Eventos-Noticias`.
-  - **Contribuir:** tabs para Donar, Ser Voluntario y Proponer Experimentos.
+- Páginas principales: `Home`, `Experimentos`, `Actividades` (Galería, Eventos-Noticias), `Apóyanos` (Campañas, Donativos, Voluntariado, Propuestas) y `Nosotros`.
+  - **Apóyanos:** reorganizado con cuatro opciones: Campañas Activas, Donación General, Voluntariado, Proponer Ideas.
+  - **Campañas:** sistema completo de recaudación de fondos con muro interactivo de ladrillos, donaciones simuladas y rastreo de contribuciones.
   - **Nosotros:** misión, visión, qué hacemos, impacto/números clave, equipo, aliados, testimonios, cronograma y contacto con carrusel de momentos.
   - **Galería:** galería de fotos filtrable por categoría con visor modal.
   - **Eventos-Noticias:** calendario interactivo, próximos eventos, últimas noticias, newsletter.
-- **Componentes reutilizables (18 totales):**
+- **Componentes reutilizables (21 totales):**
   - Estructura: `NavBar` (responsive), `Footer`, `Hero`, `ExplorationCard`, `FAQCard`
-  - Tarjetas: `TeamCard`, `StatsCounter`, `EventCard`, `NoticiaCard`
+  - Tarjetas: `TeamCard`, `StatsCounter`, `EventCard`, `NoticiaCard`, `CampanaCard`
   - Media: `Carrusel`, `SocialIcon`, `Calendario`
   - Antiguos: `Experimentos` (página)
 - **Hooks personalizados:** `useScrollTop` para scroll automático al navegar.
-- **Datos separados (5 archivos):** `homeData.js`, `contribuirData.js`, `nosotrosData.js`, `eventosNoticiasData.js`, `galeriaData.js`
+- **Datos separados (7 archivos):** `homeData.js`, `contribuirData.js`, `nosotrosData.js`, `eventosNoticiasData.js`, `galeriaData.js`, `campanasData.js`, `mockExperimentos.json`
   - Arquitectura preparada para conectar a APIs sin refactorizar componentes
+  - Sistema de campañas con 17 campañas de demostración (1 activa, 4 próximas, 7 completadas, 5+ históricas)
   - Fácil mantenimiento y escalabilidad
-- **UX mejorada:** scroll automático al tope al navegar entre páginas.
+- **UX mejorada:** scroll automático al tope al navegar entre páginas, barra de progreso dinámica.
 - **Sistema de diseño semántico:**
-  - Paleta de colores definida en variables CSS (6 colores ciencia + 40+ variables semánticas)
-  - Clases reutilizables: `.btn-main`, `.btn-primary`, `.card-*`, `.badge-*`, `.link-*`, `.text-*`
+  - Paleta de colores Tailwind estándar (indigo, purple, emerald, gray, etc.)
+  - Clases reutilizables: `.btn-main`, `.card-base`, `.badge-base`, `.badge-info`, `.badge-neutral`
   - Degradados personalizados por página (hero sections con identidad visual única)
+  - Barra de progreso con colores dinámicos según avance (cyan → blue → indigo → emerald)
 
 ## 🚀 Stack Tecnológico
 
@@ -62,19 +65,22 @@ npm install
   - **Layout:** `NavBar.jsx` (navegación responsiva), `Footer.jsx` (pie reutilizable), `Hero.jsx` (sección hero flexible)
   - **Cards:** `TeamCard.jsx`, `StatsCounter.jsx`, `EventCard.jsx`, `NoticiaCard.jsx`, `FAQCard.jsx` (accordion), `ExplorationCard.jsx` (exploración)
   - **Media:** `Carrusel.jsx` (carrusel animado), `SocialIcon.jsx` (botón red social), `Calendario.jsx` (calendario interactivo)
-- `src/pages/` — vistas principales (6 páginas):
+- `src/pages/` — vistas principales (8 páginas):
   - `Home.jsx` - landing page rediseñada
   - `Nosotros.jsx` - página sobre nosotros
   - `Contribuir.jsx` - formas de colaborar
   - `EventosNoticias.jsx` - eventos y noticias
   - `Galeria.jsx` - galería de fotos
   - `Experimentos.jsx` - lista de experimentos
-- `src/data/` — datos mock centralizados (5 archivos):
+  - `Campanas.jsx` - listado de campañas con filtros y búsqueda
+  - `CampanaDetalle.jsx` - detalle de campaña con muro de ladrillos y donaciones
+- `src/data/` — datos mock centralizados (7 archivos):
   - `homeData.js` - exploración, contribución, impacto
   - `contribuirData.js` - opciones donación, roles, tipos propuesta, FAQ
   - `nosotrosData.js` - equipo, carrusel, impacto, testimonios, timeline
   - `eventosNoticiasData.js` - eventos, noticias, categorías
   - `galeriaData.js` - fotos, categorías
+  - `campanasData.js` - 17 campañas con estructura lista para BD
 - `src/hooks/` — hooks personalizados:
   - `useScrollTop.js` - scroll automático al navegar
 - `src/services/` — abstracción de acceso a datos (preparado para APIs)
@@ -99,6 +105,47 @@ Página informativa con diseño ilustrado que incluye:
 - **Testimonios:** citas de beneficiarios (padres, docentes, voluntarios).
 - **Cronograma:** línea de tiempo con hitos desde 2019 hasta próximos pasos.
 - **Contacto:** email, teléfono, ubicación, formulario y redes sociales.
+
+### Campañas (`/campanas` y `/campanas/:slug`)
+
+**Sistema completo de recaudación de fondos con dos páginas:**
+
+#### Listado de Campañas (`/campanas`)
+- **Búsqueda:** campo de búsqueda en tiempo real por nombre o descripción.
+- **Filtros:** por estado (todas/activas/completadas/próximas) y categoría (Infraestructura, Educación, Eventos, Equipamiento).
+- **Sección de impacto:** 3 métricas visuales (campañas totales, activas, recaudado total).
+- **Grillas por estado:** cada estado agrupado en su propia sección.
+- **Tarjetas de campaña (`CampanaCard`):** muestra progreso visual con barra dinámica, meta, recaudado, badges de estado/categoría.
+- **17 campañas de demostración:** 1 activa, 4 próximas, 7 completadas, 5+ históricas/demo.
+
+#### Detalle de Campaña (`/campanas/:slug`)
+- **Hero personalizado:** con gradiente, breadcrumb y badges de estado/categoría.
+- **Muro de Ladrillos (interactivo):** visualización especial para campañas de infraestructura.
+  - Grid 10x10 de ladrillos (100 total).
+  - Ladrillos colocados en naranja/gradiente, pendientes en gris.
+  - **Tooltips al pasar cursor:** muestra nombre y mensaje del donador.
+  - Actualización en tiempo real al simular donaciones.
+- **Contenido principal (columna izquierda):**
+  - Historia y descripción completa de la campaña.
+  - Beneficios con checkmarks en grid.
+  - Donaciones recientes (últimas 5).
+  - Actualizaciones (timeline) con fechas formateadas.
+- **Panel de donación (columna derecha, sticky):**
+  - Cantidad recaudada / meta con número grande.
+  - Barra de progreso dinámica (colores según avance: cyan → blue → indigo → emerald).
+  - Estadísticas: # donadores, días restantes.
+  - Botón "Donar Ahora" que abre modal.
+  - Opciones de donación sugeridas (dinámicas según campaña).
+  - Botones para compartir en redes (Facebook, Twitter, WhatsApp).
+- **Modal de Donación:**
+  - Selección de cantidad (presets o personalizado).
+  - Campos opcionales: nombre donador, mensaje de apoyo.
+  - Nota explicativa sobre integración futura con PayPal/Stripe.
+  - Confirmación visual de éxito con animación.
+- **Sistema de datos listo para BD:**
+  - Donaciones almacenadas con estructura: `id`, `campaña_id`, `cantidad`, `nombre`, `mensaje`, `fecha`, `estado`
+  - IDs únicos con timestamp para trazabilidad.
+  - Fácil integración con APIs de pago cuando se requiera.
 
 ### Galería (`/galeria`)
 Galería de fotos con:

@@ -6,24 +6,24 @@ import { Link, useLocation } from 'react-router-dom';
  * Barra de navegación reutilizable para la aplicación con arquitectura responsive y dropdowns.
  * - Muestra logo y enlaces principales
  * - Controla el estado activo según la ruta usando `useLocation`
- * - Incluye dropdown "Explorar" que agrupa Experimentos, Galería y Eventos
- * - Incluye botón "Contribuir" con dropdown para acciones rápidas (Donar, Voluntario, Proponer)
+ * - Incluye dropdown "Actividades" que agrupa Experimentos, Eventos y Galería
+ * - Incluye botón "Apóyanos" con dropdown para Campañas, Donaciones, Voluntariado y Propuestas
  *
  * Estados controlados:
  * - `isMobileOpen`: controla el panel del menú móvil (hamburger). Al abrirlo, ambos dropdowns se cierran.
- * - `isDropdownOpen`: controla la visibilidad del dropdown "Contribuir" (desktop y móvil)
- * - `isExplorarDropdownOpen`: controla la visibilidad del dropdown "Explorar" (desktop y móvil)
+ * - `isDropdownOpen`: controla la visibilidad del dropdown "Apóyanos" (desktop y móvil)
+ * - `isActividadesDropdownOpen`: controla la visibilidad del dropdown "Actividades" (desktop y móvil)
  * - `activeTab`: extraído de `location.search` (`?tab=`) para resaltar sub-enlaces dentro de "Contribuir"
  *
  * Estructura de navegación:
  * Desktop:
- *   - Inicio | Explorar (dropdown: Experimentos, Galería, Eventos) | Nosotros | Contribuir (dropdown)
+ *   - Inicio | Nosotros | Actividades (dropdown: Experimentos, Eventos, Galería) | Apóyanos (dropdown)
  * Mobile:
- *   - Hamburger → Inicio, Explorar (expandible), Nosotros, Contribuir (expandido con sub-enlaces)
+ *   - Hamburger → Inicio, Nosotros, Actividades (expandible), Apóyanos (expandido con sub-enlaces)
  *
  * Comportamiento de dropdowns:
- * - Explorar: agrupa Experimentos (#/experimentos), Galería (#/galeria), Eventos (#/eventos-noticias)
- * - Contribuir: ofrece Donar Fondos (#/contribuir?tab=donar), Ser Voluntario (#/contribuir?tab=voluntario), Proponer (#/contribuir?tab=proponer)
+ * - Actividades: agrupa Experimentos (#/experimentos), Eventos (#/eventos-noticias), Galería (#/galeria)
+ * - Apóyanos: ofrece Campañas (#/campanas), Donación General (#/contribuir?tab=donar), Voluntariado (#/contribuir?tab=voluntario), Proponer (#/contribuir?tab=proponer)
  * - El resaltado activo aplica a la ruta principal y todos sus sub-enlaces
  * - En móvil, cerrar un sub-enlace cierra automáticamente tanto el dropdown como el menú
  *
@@ -32,7 +32,7 @@ import { Link, useLocation } from 'react-router-dom';
 
 const NavBar = () => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-    const [isExplorarDropdownOpen, setIsExplorarDropdownOpen] = useState(false);
+    const [isActividadesDropdownOpen, setIsActividadesDropdownOpen] = useState(false);
     const [isMobileOpen, setIsMobileOpen] = useState(false);
     const location = useLocation();
 
@@ -49,11 +49,11 @@ const NavBar = () => {
 
     const toggleDropdown = () => {
         setIsDropdownOpen(!isDropdownOpen);
-        setIsExplorarDropdownOpen(false);
+        setIsActividadesDropdownOpen(false);
     };
 
-    const toggleExplorarDropdown = () => {
-        setIsExplorarDropdownOpen(!isExplorarDropdownOpen);
+    const toggleActividadesDropdown = () => {
+        setIsActividadesDropdownOpen(!isActividadesDropdownOpen);
         setIsDropdownOpen(false);
     };
 
@@ -62,7 +62,7 @@ const NavBar = () => {
         // close desktop dropdowns when opening mobile menu
         if (!isMobileOpen) {
             setIsDropdownOpen(false);
-            setIsExplorarDropdownOpen(false);
+            setIsActividadesDropdownOpen(false);
         }
     };
 
@@ -91,18 +91,18 @@ const NavBar = () => {
                             )}
                         </Link>
 
-                        {/* Desktop Explorar dropdown */}
+                        {/* Desktop Actividades dropdown */}
                         <div className="relative">
                             <button
-                                onClick={toggleExplorarDropdown}
+                                onClick={toggleActividadesDropdown}
                                 className={`relative font-medium transition px-1 flex items-center gap-1 ${
                                     isActive('/experimentos') || isActive('/galeria') || isActive('/eventos-noticias')
                                         ? 'text-indigo-600 font-semibold'
                                         : 'text-gray-600 hover:text-indigo-600'
                                 }`}
                             >
-                                Explorar
-                                <span className={`text-sm transition-transform ${isExplorarDropdownOpen ? 'rotate-180' : ''}`}>
+                                Actividades
+                                <span className={`text-sm transition-transform ${isActividadesDropdownOpen ? 'rotate-180' : ''}`}>
                                     ▼
                                 </span>
                                 {(isActive('/experimentos') || isActive('/galeria') || isActive('/eventos-noticias')) && (
@@ -110,46 +110,46 @@ const NavBar = () => {
                                 )}
                             </button>
 
-                            {isExplorarDropdownOpen && (
+                            {isActividadesDropdownOpen && (
                                 <div className="absolute left-0 mt-2 w-56 bg-white border border-gray-200 rounded-lg shadow-lg z-10">
                                     <Link
                                         to="/experimentos"
-                                        onClick={() => setIsExplorarDropdownOpen(false)}
+                                        onClick={() => setIsActividadesDropdownOpen(false)}
                                         className="block px-6 py-3 text-gray-800 hover:bg-indigo-50 font-medium border-b hover:text-indigo-600 transition"
                                     >
                                         🧪 Experimentos
                                     </Link>
                                     <Link
-                                        to="/galeria"
-                                        onClick={() => setIsExplorarDropdownOpen(false)}
+                                        to="/eventos-noticias"
+                                        onClick={() => setIsActividadesDropdownOpen(false)}
                                         className="block px-6 py-3 text-gray-800 hover:bg-indigo-50 font-medium border-b hover:text-indigo-600 transition"
                                     >
-                                        📸 Galería
+                                        📅 Eventos y Noticias
                                     </Link>
                                     <Link
-                                        to="/eventos-noticias"
-                                        onClick={() => setIsExplorarDropdownOpen(false)}
+                                        to="/galeria"
+                                        onClick={() => setIsActividadesDropdownOpen(false)}
                                         className="block px-6 py-3 text-gray-800 hover:bg-indigo-50 font-medium hover:text-indigo-600 transition"
                                     >
-                                        📅 Eventos y Noticias
+                                        📸 Galería
                                     </Link>
                                 </div>
                             )}
                         </div>
 
-                        {/* Desktop Contribuir button + dropdown */}
+                        {/* Desktop Apóyanos button + dropdown */}
                         <div className="relative">
                             <div className="relative inline-block">
                                 <button
                                     onClick={toggleDropdown}
-                                    className={`font-bold py-2 px-6 rounded-full transition flex items-center gap-2 ${isActive('/contribuir') ? 'bg-indigo-700 text-white ring-2 ring-indigo-200' : 'bg-indigo-600 text-white hover:bg-indigo-700'}`}
+                                    className={`font-bold py-2 px-6 rounded-full transition flex items-center gap-2 ${isActive('/contribuir') || isActive('/campanas') ? 'bg-indigo-700 text-white ring-2 ring-indigo-200' : 'bg-indigo-600 text-white hover:bg-indigo-700'}`}
                                 >
-                                    Contribuir
+                                    Apóyanos
                                     <span className={`text-sm transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`}>
                                         ▼
                                     </span>
                                 </button>
-                                {isActive('/contribuir') && (
+                                {(isActive('/contribuir') || isActive('/campanas')) && (
                                     <span className="absolute left-0 right-0 -bottom-2 h-0.5 bg-indigo-600 rounded" />
                                 )}
                             </div>
@@ -157,25 +157,32 @@ const NavBar = () => {
                             {isDropdownOpen && (
                                 <div className="absolute right-0 mt-2 w-56 bg-white border border-gray-200 rounded-lg shadow-lg z-10">
                                     <Link
+                                        to="/campanas"
+                                        onClick={() => setIsDropdownOpen(false)}
+                                        className="block px-6 py-3 text-gray-800 hover:bg-indigo-50 font-medium border-b hover:text-indigo-600 transition"
+                                    >
+                                        💙 Campañas Activas
+                                    </Link>
+                                    <Link
                                         to="/contribuir?tab=donar"
                                         onClick={() => setIsDropdownOpen(false)}
                                         className="block px-6 py-3 text-gray-800 hover:bg-indigo-50 font-medium border-b hover:text-indigo-600 transition"
                                     >
-                                        💰 Donar Fondos
+                                        💰 Donación General
                                     </Link>
                                     <Link
                                         to="/contribuir?tab=voluntario"
                                         onClick={() => setIsDropdownOpen(false)}
                                         className="block px-6 py-3 text-gray-800 hover:bg-indigo-50 font-medium border-b hover:text-indigo-600 transition"
                                     >
-                                        🤝 Ser Voluntario
+                                        🤝 Voluntariado
                                     </Link>
                                     <Link
                                         to="/contribuir?tab=proponer"
                                         onClick={() => setIsDropdownOpen(false)}
                                         className="block px-6 py-3 text-gray-800 hover:bg-indigo-50 font-medium hover:text-indigo-600 transition"
                                     >
-                                        💡 Proponer Experimentos
+                                        💡 Proponer Ideas
                                     </Link>
                                 </div>
                             )}
@@ -211,27 +218,27 @@ const NavBar = () => {
                             Nosotros
                         </Link>
 
-                        {/* Mobile: Explorar section */}
+                        {/* Mobile: Actividades section */}
                         <div>
                             <button
-                                onClick={toggleExplorarDropdown}
+                                onClick={toggleActividadesDropdown}
                                 className={`w-full text-left px-3 py-2 rounded-md text-base font-medium flex items-center justify-between ${
                                     isActive('/experimentos') || isActive('/galeria') || isActive('/eventos-noticias')
                                         ? 'text-indigo-600 font-semibold bg-indigo-50'
                                         : 'text-gray-700 hover:bg-gray-50'
                                 }`}
                             >
-                                Explorar
-                                <span className={`text-sm transition-transform ${isExplorarDropdownOpen ? 'rotate-180' : ''}`}>
+                                Actividades
+                                <span className={`text-sm transition-transform ${isActividadesDropdownOpen ? 'rotate-180' : ''}`}>
                                     ▼
                                 </span>
                             </button>
-                            {isExplorarDropdownOpen && (
+                            {isActividadesDropdownOpen && (
                                 <div className="pl-4 space-y-2 bg-gray-50 rounded-md mt-1">
                                     <Link
                                         to="/experimentos"
                                         onClick={() => {
-                                            setIsExplorarDropdownOpen(false);
+                                            setIsActividadesDropdownOpen(false);
                                             setIsMobileOpen(false);
                                         }}
                                         className={`block px-3 py-2 rounded-md text-base font-medium ${
@@ -243,23 +250,9 @@ const NavBar = () => {
                                         🧪 Experimentos
                                     </Link>
                                     <Link
-                                        to="/galeria"
-                                        onClick={() => {
-                                            setIsExplorarDropdownOpen(false);
-                                            setIsMobileOpen(false);
-                                        }}
-                                        className={`block px-3 py-2 rounded-md text-base font-medium ${
-                                            isActive('/galeria')
-                                                ? 'text-indigo-600 font-semibold'
-                                                : 'text-gray-700 hover:text-indigo-600'
-                                        }`}
-                                    >
-                                        📸 Galería
-                                    </Link>
-                                    <Link
                                         to="/eventos-noticias"
                                         onClick={() => {
-                                            setIsExplorarDropdownOpen(false);
+                                            setIsActividadesDropdownOpen(false);
                                             setIsMobileOpen(false);
                                         }}
                                         className={`block px-3 py-2 rounded-md text-base font-medium ${
@@ -270,27 +263,55 @@ const NavBar = () => {
                                     >
                                         📅 Eventos y Noticias
                                     </Link>
+                                    <Link
+                                        to="/galeria"
+                                        onClick={() => {
+                                            setIsActividadesDropdownOpen(false);
+                                            setIsMobileOpen(false);
+                                        }}
+                                        className={`block px-3 py-2 rounded-md text-base font-medium ${
+                                            isActive('/galeria')
+                                                ? 'text-indigo-600 font-semibold'
+                                                : 'text-gray-700 hover:text-indigo-600'
+                                        }`}
+                                    >
+                                        📸 Galería
+                                    </Link>
                                 </div>
                             )}
                         </div>
 
-                        {/* Mobile Contribuir expanded section */}
+                        {/* Mobile Apóyanos expanded section */}
                         <div>
                             <button
                                 onClick={toggleDropdown}
                                 className={`w-full text-left px-3 py-2 rounded-md text-base font-medium flex items-center justify-between ${
-                                    isActive('/contribuir')
+                                    isActive('/contribuir') || isActive('/campanas')
                                         ? 'text-indigo-600 font-semibold bg-indigo-50'
                                         : 'text-gray-700 hover:bg-gray-50'
                                 }`}
                             >
-                                Contribuir
+                                Apóyanos
                                 <span className={`text-sm transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`}>
                                     ▼
                                 </span>
                             </button>
                             {isDropdownOpen && (
                                 <div className="pl-4 space-y-2 bg-gray-50 rounded-md mt-1">
+                                    <Link
+                                        to="/campanas"
+                                        onClick={() => {
+                                            setIsDropdownOpen(false);
+                                            setIsMobileOpen(false);
+                                        }}
+                                        className={`block px-3 py-2 rounded-md text-base font-medium ${
+                                            isActive('/campanas')
+                                                ? 'text-indigo-600 font-semibold'
+                                                : 'text-gray-700 hover:text-indigo-600'
+                                        }`}
+                                    >
+                                        💙 Campañas Activas
+                                    </Link>
                                     <Link
                                         to="/contribuir?tab=donar"
                                         onClick={() => {
@@ -303,7 +324,7 @@ const NavBar = () => {
                                                 : 'text-gray-700 hover:text-indigo-600'
                                         }`}
                                     >
-                                        💰 Donar Fondos
+                                        💰 Donación General
                                     </Link>
                                     <Link
                                         to="/contribuir?tab=voluntario"
@@ -317,7 +338,7 @@ const NavBar = () => {
                                                 : 'text-gray-700 hover:text-indigo-600'
                                         }`}
                                     >
-                                        🤝 Ser Voluntario
+                                        🤝 Voluntariado
                                     </Link>
                                     <Link
                                         to="/contribuir?tab=proponer"
@@ -331,7 +352,7 @@ const NavBar = () => {
                                                 : 'text-gray-700 hover:text-indigo-600'
                                         }`}
                                     >
-                                        💡 Proponer Experimentos
+                                        💡 Proponer Ideas
                                     </Link>
                                 </div>
                             )}
