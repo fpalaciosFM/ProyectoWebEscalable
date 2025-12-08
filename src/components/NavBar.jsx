@@ -3,27 +3,36 @@ import { Link, useLocation } from 'react-router-dom';
 
 /**
  * NavBar
- * Barra de navegación reutilizable para la aplicación.
+ * Barra de navegación reutilizable para la aplicación con arquitectura responsive y dropdowns.
  * - Muestra logo y enlaces principales
  * - Controla el estado activo según la ruta usando `useLocation`
- * - Incluye un botón "Contribuir" con dropdown para acciones rápidas
+ * - Incluye dropdown "Explorar" que agrupa Experimentos, Galería y Eventos
+ * - Incluye botón "Contribuir" con dropdown para acciones rápidas (Donar, Voluntario, Proponer)
  *
- * Comportamiento mobile/accessible relevante:
- * - `isMobileOpen` (state): controla el panel del menú móvil (hamburger). Al abrirlo, el dropdown de escritorio se cierra.
- * - `activeTab`: extraído de `location.search` (`?tab=`) y usado para resaltar los sub-enlaces dentro de la sección "Contribuir" en el menú móvil.
- * - Los enlaces en el menú móvil cierran el panel al navegar para evitar superposición visual.
+ * Estados controlados:
+ * - `isMobileOpen`: controla el panel del menú móvil (hamburger). Al abrirlo, ambos dropdowns se cierran.
+ * - `isDropdownOpen`: controla la visibilidad del dropdown "Contribuir" (desktop y móvil)
+ * - `isExplorarDropdownOpen`: controla la visibilidad del dropdown "Explorar" (desktop y móvil)
+ * - `activeTab`: extraído de `location.search` (`?tab=`) para resaltar sub-enlaces dentro de "Contribuir"
  *
- * Uso:
- * - En pantallas pequeñas el menú muestra un botón hamburguesa; dentro hay enlaces principales y la sección "Contribuir" con sub-enlaces:
- *   - `#/contribuir?tab=donar` → Donar Fondos (resaltado cuando `tab=donar`)
- *   - `#/contribuir?tab=voluntario` → Ser Voluntario (resaltado cuando `tab=voluntario`)
- *   - `#/contribuir?tab=proponer` → Proponer Experimentos (resaltado cuando `tab=proponer`)
+ * Estructura de navegación:
+ * Desktop:
+ *   - Inicio | Explorar (dropdown: Experimentos, Galería, Eventos) | Nosotros | Contribuir (dropdown)
+ * Mobile:
+ *   - Hamburger → Inicio, Explorar (expandible), Nosotros, Contribuir (expandido con sub-enlaces)
  *
- * Diseño pensado para ser usado en todas las páginas principales (Home, Experimentos, Contribuir).
+ * Comportamiento de dropdowns:
+ * - Explorar: agrupa Experimentos (#/experimentos), Galería (#/galeria), Eventos (#/eventos-noticias)
+ * - Contribuir: ofrece Donar Fondos (#/contribuir?tab=donar), Ser Voluntario (#/contribuir?tab=voluntario), Proponer (#/contribuir?tab=proponer)
+ * - El resaltado activo aplica a la ruta principal y todos sus sub-enlaces
+ * - En móvil, cerrar un sub-enlace cierra automáticamente tanto el dropdown como el menú
+ *
+ * Diseño pensado para ser usado en todas las páginas principales de la aplicación.
  */
 
 const NavBar = () => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const [isExplorarDropdownOpen, setIsExplorarDropdownOpen] = useState(false);
     const [isMobileOpen, setIsMobileOpen] = useState(false);
     const location = useLocation();
 
@@ -40,12 +49,21 @@ const NavBar = () => {
 
     const toggleDropdown = () => {
         setIsDropdownOpen(!isDropdownOpen);
+        setIsExplorarDropdownOpen(false);
+    };
+
+    const toggleExplorarDropdown = () => {
+        setIsExplorarDropdownOpen(!isExplorarDropdownOpen);
+        setIsDropdownOpen(false);
     };
 
     const toggleMobile = () => {
         setIsMobileOpen(!isMobileOpen);
-        // close desktop dropdown when opening mobile menu
-        if (!isMobileOpen) setIsDropdownOpen(false);
+        // close desktop dropdowns when opening mobile menu
+        if (!isMobileOpen) {
+            setIsDropdownOpen(false);
+            setIsExplorarDropdownOpen(false);
+        }
     };
 
     return (
@@ -65,30 +83,59 @@ const NavBar = () => {
                                 <span className="absolute left-0 right-0 -bottom-2 h-0.5 bg-indigo-600 rounded" />
                             )}
                         </Link>
-                        <Link to="/experimentos" className={`relative font-medium transition px-1 ${isActive('/experimentos') ? 'text-indigo-600 font-semibold' : 'text-gray-600 hover:text-indigo-600'}`}>
-                            Experimentos
-                            {isActive('/experimentos') && (
-                                <span className="absolute left-0 right-0 -bottom-2 h-0.5 bg-indigo-600 rounded" />
-                            )}
-                        </Link>
-                        <Link to="/galeria" className={`relative font-medium transition px-1 ${isActive('/galeria') ? 'text-indigo-600 font-semibold' : 'text-gray-600 hover:text-indigo-600'}`}>
-                            Galería
-                            {isActive('/galeria') && (
-                                <span className="absolute left-0 right-0 -bottom-2 h-0.5 bg-indigo-600 rounded" />
-                            )}
-                        </Link>
+
                         <Link to="/nosotros" className={`relative font-medium transition px-1 ${isActive('/nosotros') ? 'text-indigo-600 font-semibold' : 'text-gray-600 hover:text-indigo-600'}`}>
                             Nosotros
                             {isActive('/nosotros') && (
                                 <span className="absolute left-0 right-0 -bottom-2 h-0.5 bg-indigo-600 rounded" />
                             )}
                         </Link>
-                        <Link to="/eventos-noticias" className={`relative font-medium transition px-1 ${isActive('/eventos-noticias') ? 'text-indigo-600 font-semibold' : 'text-gray-600 hover:text-indigo-600'}`}>
-                            Eventos
-                            {isActive('/eventos-noticias') && (
-                                <span className="absolute left-0 right-0 -bottom-2 h-0.5 bg-indigo-600 rounded" />
+
+                        {/* Desktop Explorar dropdown */}
+                        <div className="relative">
+                            <button
+                                onClick={toggleExplorarDropdown}
+                                className={`relative font-medium transition px-1 flex items-center gap-1 ${
+                                    isActive('/experimentos') || isActive('/galeria') || isActive('/eventos-noticias')
+                                        ? 'text-indigo-600 font-semibold'
+                                        : 'text-gray-600 hover:text-indigo-600'
+                                }`}
+                            >
+                                Explorar
+                                <span className={`text-sm transition-transform ${isExplorarDropdownOpen ? 'rotate-180' : ''}`}>
+                                    ▼
+                                </span>
+                                {(isActive('/experimentos') || isActive('/galeria') || isActive('/eventos-noticias')) && (
+                                    <span className="absolute left-0 right-0 -bottom-2 h-0.5 bg-indigo-600 rounded" />
+                                )}
+                            </button>
+
+                            {isExplorarDropdownOpen && (
+                                <div className="absolute left-0 mt-2 w-56 bg-white border border-gray-200 rounded-lg shadow-lg z-10">
+                                    <Link
+                                        to="/experimentos"
+                                        onClick={() => setIsExplorarDropdownOpen(false)}
+                                        className="block px-6 py-3 text-gray-800 hover:bg-indigo-50 font-medium border-b hover:text-indigo-600 transition"
+                                    >
+                                        🧪 Experimentos
+                                    </Link>
+                                    <Link
+                                        to="/galeria"
+                                        onClick={() => setIsExplorarDropdownOpen(false)}
+                                        className="block px-6 py-3 text-gray-800 hover:bg-indigo-50 font-medium border-b hover:text-indigo-600 transition"
+                                    >
+                                        📸 Galería
+                                    </Link>
+                                    <Link
+                                        to="/eventos-noticias"
+                                        onClick={() => setIsExplorarDropdownOpen(false)}
+                                        className="block px-6 py-3 text-gray-800 hover:bg-indigo-50 font-medium hover:text-indigo-600 transition"
+                                    >
+                                        📅 Eventos y Noticias
+                                    </Link>
+                                </div>
                             )}
-                        </Link>
+                        </div>
 
                         {/* Desktop Contribuir button + dropdown */}
                         <div className="relative">
@@ -159,18 +206,73 @@ const NavBar = () => {
                         <Link to="/" onClick={() => setIsMobileOpen(false)} className={`block px-3 py-2 rounded-md text-base font-medium ${isActive('/') ? 'text-indigo-600 font-semibold' : 'text-gray-700 hover:bg-gray-50'}`}>
                             Inicio
                         </Link>
-                        <Link to="/experimentos" onClick={() => setIsMobileOpen(false)} className={`block px-3 py-2 rounded-md text-base font-medium ${isActive('/experimentos') ? 'text-indigo-600 font-semibold' : 'text-gray-700 hover:bg-gray-50'}`}>
-                            Experimentos
-                        </Link>
-                        <Link to="/galeria" onClick={() => setIsMobileOpen(false)} className={`block px-3 py-2 rounded-md text-base font-medium ${isActive('/galeria') ? 'text-indigo-600 font-semibold' : 'text-gray-700 hover:bg-gray-50'}`}>
-                            Galería
-                        </Link>
+
                         <Link to="/nosotros" onClick={() => setIsMobileOpen(false)} className={`block px-3 py-2 rounded-md text-base font-medium ${isActive('/nosotros') ? 'text-indigo-600 font-semibold' : 'text-gray-700 hover:bg-gray-50'}`}>
                             Nosotros
                         </Link>
-                        <Link to="/eventos-noticias" onClick={() => setIsMobileOpen(false)} className={`block px-3 py-2 rounded-md text-base font-medium ${isActive('/eventos-noticias') ? 'text-indigo-600 font-semibold' : 'text-gray-700 hover:bg-gray-50'}`}>
-                            Eventos
-                        </Link>
+
+                        {/* Mobile: Explorar section */}
+                        <div>
+                            <button
+                                onClick={toggleExplorarDropdown}
+                                className={`w-full text-left px-3 py-2 rounded-md text-base font-medium flex items-center justify-between ${
+                                    isActive('/experimentos') || isActive('/galeria') || isActive('/eventos-noticias')
+                                        ? 'text-indigo-600 font-semibold bg-indigo-50'
+                                        : 'text-gray-700 hover:bg-gray-50'
+                                }`}
+                            >
+                                Explorar
+                                <span className={`text-sm transition-transform ${isExplorarDropdownOpen ? 'rotate-180' : ''}`}>
+                                    ▼
+                                </span>
+                            </button>
+                            {isExplorarDropdownOpen && (
+                                <div className="pl-4 space-y-2 bg-gray-50 rounded-md mt-1">
+                                    <Link
+                                        to="/experimentos"
+                                        onClick={() => {
+                                            setIsExplorarDropdownOpen(false);
+                                            setIsMobileOpen(false);
+                                        }}
+                                        className={`block px-3 py-2 rounded-md text-base font-medium ${
+                                            isActive('/experimentos')
+                                                ? 'text-indigo-600 font-semibold'
+                                                : 'text-gray-700 hover:text-indigo-600'
+                                        }`}
+                                    >
+                                        🧪 Experimentos
+                                    </Link>
+                                    <Link
+                                        to="/galeria"
+                                        onClick={() => {
+                                            setIsExplorarDropdownOpen(false);
+                                            setIsMobileOpen(false);
+                                        }}
+                                        className={`block px-3 py-2 rounded-md text-base font-medium ${
+                                            isActive('/galeria')
+                                                ? 'text-indigo-600 font-semibold'
+                                                : 'text-gray-700 hover:text-indigo-600'
+                                        }`}
+                                    >
+                                        📸 Galería
+                                    </Link>
+                                    <Link
+                                        to="/eventos-noticias"
+                                        onClick={() => {
+                                            setIsExplorarDropdownOpen(false);
+                                            setIsMobileOpen(false);
+                                        }}
+                                        className={`block px-3 py-2 rounded-md text-base font-medium ${
+                                            isActive('/eventos-noticias')
+                                                ? 'text-indigo-600 font-semibold'
+                                                : 'text-gray-700 hover:text-indigo-600'
+                                        }`}
+                                    >
+                                        📅 Eventos y Noticias
+                                    </Link>
+                                </div>
+                            )}
+                        </div>
 
                         {/* Mobile Contribuir expanded section */}
                         <div className="mt-2 border-t border-gray-100 pt-2 px-3">
