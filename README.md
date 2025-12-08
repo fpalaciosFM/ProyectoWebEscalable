@@ -57,6 +57,17 @@ La página `/contribuir` ofrece tres vías para apoyar el proyecto:
 
 Actualmente los formularios y botones son estáticos (mock). La arquitectura está preparada para conectar con pasarelas de pago y APIs en el futuro.
 
+## 📱 NavBar responsive (móvil)
+
+- En pantallas pequeñas el `NavBar` muestra un botón hamburguesa que abre un panel con los enlaces principales.
+- La sección **Contribuir** incluye sub-enlaces que utilizan el query param `tab` para identificar la subsección activa. Ejemplos:
+	- `#/contribuir?tab=donar` — Donar Fondos (resaltado cuando `tab=donar`)
+	- `#/contribuir?tab=voluntario` — Ser Voluntario (resaltado cuando `tab=voluntario`)
+	- `#/contribuir?tab=proponer` — Proponer Experimentos (resaltado cuando `tab=proponer`)
+
+- QA rápida: abrir DevTools en modo móvil → abrir menú hamburguesa → comprobar que al pulsar el sub-enlace correspondiente se navega a la sección y el panel se cierra automáticamente.
+
+
 ## ✅ Transparencia y confianza
 
 Se añadieron elementos para generar confianza en donantes: sección de desglose de gastos en la página `Contribuir`, FAQ y llamadas a la transparencia. Se recomienda agregar reportes descargables (PDF) y un panel de auditoría cuando se integren donaciones reales.
