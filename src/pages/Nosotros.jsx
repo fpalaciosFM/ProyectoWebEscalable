@@ -1,10 +1,10 @@
 import React from 'react';
-import { useEffect } from 'react';
 import NavBar from '../components/NavBar';
+import Footer from '../components/Footer';
 import TeamCard from '../components/TeamCard';
 import StatsCounter from '../components/StatsCounter';
-import SocialIcon from '../components/SocialIcon';
 import Carrusel from '../components/Carrusel';
+import { useScrollTop } from '../hooks/useScrollTop';
 import { Link } from 'react-router-dom';
 
 /**
@@ -43,9 +43,7 @@ const Nosotros = () => {
     ];
 
     // Scroll to top when component mounts
-    useEffect(() => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }, []);
+    useScrollTop();
 
     return (
         <div className="min-h-screen bg-slate-50">
@@ -398,6 +396,7 @@ const Nosotros = () => {
                     </div>
                 </section>
             </main>
+            <Footer />
         </div>
     );
 };

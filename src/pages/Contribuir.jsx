@@ -1,6 +1,7 @@
 import { useSearchParams, Link, useLocation } from 'react-router-dom';
-import { useEffect } from 'react';
 import NavBar from '../components/NavBar';
+import Footer from '../components/Footer';
+import { useScrollTop } from '../hooks/useScrollTop';
 
 /**
  * Contribuir Page
@@ -14,13 +15,9 @@ import NavBar from '../components/NavBar';
 
 const Contribuir = () => {
     const [searchParams] = useSearchParams();
-    const location = useLocation();
     const activeTab = searchParams.get('tab') || 'donar';
 
-    // Scroll to top whenever the location changes (including query params)
-    useEffect(() => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }, [location]);
+    useScrollTop();
 
     return (
         <div className="min-h-screen bg-slate-50">
@@ -357,11 +354,7 @@ const Contribuir = () => {
                 </div>
             </div>
 
-            {/* Footer */}
-            <footer className="bg-gray-800 text-white text-center py-8 mt-16">
-                <p className="mb-2">© 2025 Puentes de 100cia. Hecho con ❤️ y curiosidad científica.</p>
-                <p className="text-gray-400 text-sm">¡Gracias por ser parte de nuestra misión!</p>
-            </footer>
+            <Footer />
         </div>
     );
 };

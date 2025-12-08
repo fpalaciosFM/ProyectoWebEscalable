@@ -1,8 +1,9 @@
 // src/pages/Home.jsx
 import { Link } from 'react-router-dom';
-import { useEffect } from 'react';
 import NavBar from '../components/NavBar';
-import SocialIcon from '../components/SocialIcon';
+import Footer from '../components/Footer';
+import { useScrollTop } from '../hooks/useScrollTop';
+import { exploracionCards, contribucionCards, impactStats } from '../data/homeData';
 
 /**
  * Home Page - Página de Inicio Completa
@@ -15,10 +16,7 @@ import SocialIcon from '../components/SocialIcon';
  * - Footer con navegación y redes sociales
  */
 const Home = () => {
-    // Scroll to top when component mounts
-    useEffect(() => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }, []);
+    useScrollTop();
 
     return (
         <div className="min-h-screen bg-white font-sans text-gray-800">
@@ -69,41 +67,18 @@ const Home = () => {
                     </p>
 
                     <div className="grid md:grid-cols-3 gap-8">
-                        {/* Tarjeta Experimentos */}
-                        <Link to="/experimentos" className="group cursor-pointer">
-                            <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition transform hover:-translate-y-2 border-t-4" style={{borderTopColor: 'var(--color-primary)'}}>
-                                <div className="text-6xl mb-6">🔬</div>
-                                <h3 className="text-2xl font-bold mb-3 text-primary group-hover:opacity-75 transition">Experimentos</h3>
-                                <p className="text-muted mb-6">Guías paso a paso para hacer ciencia segura y divertida con materiales caseros. Aprende el "por qué" de las cosas.</p>
-                                <span className="badge-primary">
-                                    Explorar →
-                                </span>
-                            </div>
-                        </Link>
-
-                        {/* Tarjeta Galería */}
-                        <Link to="/galeria" className="group cursor-pointer">
-                            <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition transform hover:-translate-y-2 border-t-4" style={{borderTopColor: 'var(--color-secondary)'}}>
-                                <div className="text-6xl mb-6">📸</div>
-                                <h3 className="text-2xl font-bold mb-3 text-secondary group-hover:opacity-75 transition">Galería de Momentos</h3>
-                                <p className="text-muted mb-6">Revive nuestros mejores momentos en talleres, eventos y actividades comunitarias. Inspiración visual de ciencia en acción.</p>
-                                <span className="badge-secondary" style={{backgroundColor: 'var(--color-secondary-light)', color: 'var(--color-secondary)'}}>
-                                    Ver Galería →
-                                </span>
-                            </div>
-                        </Link>
-
-                        {/* Tarjeta Eventos */}
-                        <Link to="/eventos-noticias" className="group cursor-pointer">
-                            <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition transform hover:-translate-y-2 border-t-4" style={{borderTopColor: 'var(--color-success)'}}>
-                                <div className="text-6xl mb-6">📅</div>
-                                <h3 className="text-2xl font-bold mb-3 text-success group-hover:opacity-75 transition">Eventos y Noticias</h3>
-                                <p className="text-muted mb-6">Descubre próximos eventos, talleres y las últimas noticias de nuestro proyecto. Mantente actualizado con nosotros.</p>
-                                <span className="badge-success">
-                                    Ver Eventos →
-                                </span>
-                            </div>
-                        </Link>
+                        {exploracionCards.map((card) => (
+                            <Link to={card.href} key={card.id} className="group cursor-pointer">
+                                <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition transform hover:-translate-y-2 border-t-4" style={{borderTopColor: card.borderColor}}>
+                                    <div className="text-6xl mb-6">{card.emoji}</div>
+                                    <h3 className="text-2xl font-bold mb-3 text-primary group-hover:opacity-75 transition">{card.titulo}</h3>
+                                    <p className="text-muted mb-6">{card.descripcion}</p>
+                                    <span className="badge-primary">
+                                        Explorar →
+                                    </span>
+                                </div>
+                            </Link>
+                        ))}
                     </div>
                 </div>
             </section>
@@ -149,50 +124,23 @@ const Home = () => {
                     </p>
 
                     <div className="grid md:grid-cols-3 gap-8">
-                        {/* Donar */}
-                        <div className="card-success">
-                            <div className="text-5xl mb-4">💰</div>
-                            <h3 className="text-2xl font-bold mb-3 text-gray-800">Donar Fondos</h3>
-                            <p className="text-muted mb-6">
-                                Tu aporte nos ayuda a mantener nuestros programas, comprar materiales y llegar a más personas.
-                            </p>
-                            <Link
-                                to="/contribuir?tab=donar"
-                                className="btn-main inline-block"
-                            >
-                                Donar Ahora
-                            </Link>
-                        </div>
-
-                        {/* Voluntario */}
-                        <div className="card-primary">
-                            <div className="text-5xl mb-4">🤝</div>
-                            <h3 className="text-2xl font-bold mb-3 text-gray-800">Ser Voluntario</h3>
-                            <p className="text-muted mb-6">
-                                Únete a nuestro equipo de voluntarios y ayuda a facilitar experimentos, talleres y eventos.
-                            </p>
-                            <Link
-                                to="/contribuir?tab=voluntario"
-                                className="btn-main inline-block"
-                            >
-                                Voluntariado
-                            </Link>
-                        </div>
-
-                        {/* Proponer */}
-                        <div className="card-accent">
-                            <div className="text-5xl mb-4">💡</div>
-                            <h3 className="text-2xl font-bold mb-3 text-gray-800">Proponer Experimentos</h3>
-                            <p className="text-muted mb-6">
-                                ¿Tienes una idea genial? Propón un experimento nuevo para nuestra plataforma.
-                            </p>
-                            <Link
-                                to="/contribuir?tab=proponer"
-                                className="btn-main inline-block"
-                            >
-                                Proponer
-                            </Link>
-                        </div>
+                        {contribucionCards.map((card) => (
+                            <div key={card.id} className={card.cardClass}>
+                                <div className="text-5xl mb-4">{card.emoji}</div>
+                                <h3 className="text-2xl font-bold mb-3 text-gray-800">{card.titulo}</h3>
+                                <p className="text-muted mb-6">
+                                    {card.descripcion}
+                                </p>
+                                <Link
+                                    to={card.href}
+                                    className="btn-main inline-block"
+                                >
+                                    {card.titulo === 'Donar Fondos' ? 'Donar Ahora' : 
+                                     card.titulo === 'Ser Voluntario' ? 'Voluntariado' : 
+                                     'Proponer'}
+                                </Link>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </section>
@@ -203,22 +151,12 @@ const Home = () => {
                     <h2 className="text-4xl font-bold text-center mb-16 text-gray-800">Nuestro Impacto</h2>
 
                     <div className="grid md:grid-cols-4 gap-8 text-center">
-                        <div className="p-6">
-                            <div className="text-5xl font-bold text-primary mb-2">1500+</div>
-                            <p className="text-muted text-lg">Estudiantes Impactados</p>
-                        </div>
-                        <div className="p-6">
-                            <div className="text-5xl font-bold text-secondary mb-2">200+</div>
-                            <p className="text-muted text-lg">Experimentos Realizados</p>
-                        </div>
-                        <div className="p-6">
-                            <div className="text-5xl font-bold text-accent mb-2">50+</div>
-                            <p className="text-muted text-lg">Eventos Comunitarios</p>
-                        </div>
-                        <div className="p-6">
-                            <div className="text-5xl font-bold text-success mb-2">12+</div>
-                            <p className="text-muted text-lg">Años de Trayectoria</p>
-                        </div>
+                        {impactStats.map((stat, index) => (
+                            <div key={index} className="p-6">
+                                <div className={`text-5xl font-bold ${stat.color} mb-2`}>{stat.numero}</div>
+                                <p className="text-muted text-lg">{stat.label}</p>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </section>
@@ -240,57 +178,7 @@ const Home = () => {
             </section>
 
             {/* 8. FOOTER MEJORADO */}
-            <footer className="text-white py-12 px-6" style={{backgroundColor: '#1f2937'}}>
-                <div className="max-w-6xl mx-auto">
-                    <div className="grid md:grid-cols-4 gap-8 mb-12">
-                        {/* About */}
-                        <div>
-                            <h3 className="text-xl font-bold mb-4 text-primary">Puentes de 100cia</h3>
-                            <p style={{color: 'var(--color-text-secondary)'}} className="text-sm">
-                                Inspirando la próxima generación de científicos a través de la educación interactiva y la experimentación.
-                            </p>
-                        </div>
-
-                        {/* Navegación */}
-                        <div>
-                            <h3 className="text-xl font-bold mb-4 text-primary">Navegación</h3>
-                            <ul className="space-y-2 text-sm" style={{color: 'var(--color-text-secondary)'}}>
-                                <li><Link to="/" className="link-primary">Inicio</Link></li>
-                                <li><Link to="/nosotros" className="link-primary">Nosotros</Link></li>
-                                <li><Link to="/experimentos" className="link-primary">Experimentos</Link></li>
-                                <li><Link to="/galeria" className="link-primary">Galería</Link></li>
-                            </ul>
-                        </div>
-
-                        {/* Más */}
-                        <div>
-                            <h3 className="text-xl font-bold mb-4 text-primary">Explorar</h3>
-                            <ul className="space-y-2 text-sm" style={{color: 'var(--color-text-secondary)'}}>
-                                <li><Link to="/eventos-noticias" className="link-primary">Eventos y Noticias</Link></li>
-                                <li><Link to="/contribuir" className="link-primary">Contribuir</Link></li>
-                                <li><a href="#contacto" className="link-primary">Contacto</a></li>
-                                <li><a href="#privacidad" className="link-primary">Privacidad</a></li>
-                            </ul>
-                        </div>
-
-                        {/* Redes Sociales */}
-                        <div>
-                            <h3 className="text-xl font-bold mb-4 text-primary">Síguenos</h3>
-                            <div className="flex gap-4">
-                                <SocialIcon type="facebook" />
-                                <SocialIcon type="instagram" />
-                                <SocialIcon type="tiktok" />
-                                <SocialIcon type="linkedin" />
-                                <SocialIcon type="whatsapp" />
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="border-t pt-8 text-center text-sm" style={{borderColor: 'var(--color-border)', color: 'var(--color-text-secondary)'}}>
-                        <p>© 2025 Puentes de 100cia. Hecho con ❤️ y curiosidad científica.</p>
-                    </div>
-                </div>
-            </footer>
+            <Footer />
 
         </div>
     );

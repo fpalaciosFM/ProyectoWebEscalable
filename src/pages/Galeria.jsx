@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import NavBar from '../components/NavBar';
+import Footer from '../components/Footer';
 import { Link } from 'react-router-dom';
+import { useScrollTop } from '../hooks/useScrollTop';
 
 /**
  * Galería
@@ -11,10 +13,7 @@ const Galeria = () => {
     const [selectedCategory, setSelectedCategory] = useState('todos');
     const [selectedImage, setSelectedImage] = useState(null);
 
-    // Scroll to top when component mounts
-    useEffect(() => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }, []);
+    useScrollTop();
 
     // Datos de ejemplo - fotos con categoría
     const fotos = [
@@ -190,6 +189,7 @@ const Galeria = () => {
                     </Link>
                 </section>
             </main>
+            <Footer />
         </div>
     );
 };

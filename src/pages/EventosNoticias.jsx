@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import NavBar from '../components/NavBar';
+import Footer from '../components/Footer';
 import EventCard from '../components/EventCard';
 import NoticiaCard from '../components/NoticiaCard';
 import Calendario from '../components/Calendario';
+import { useScrollTop } from '../hooks/useScrollTop';
 
 /**
  * EventosNoticias
@@ -12,10 +14,7 @@ const EventosNoticias = () => {
     const [filtroEventos, setFiltroEventos] = useState('todos');
     const [filtroNoticias, setFiltroNoticias] = useState('todos');
 
-    // Scroll to top when component mounts
-    useEffect(() => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }, []);
+    useScrollTop();
 
     // Datos de eventos próximos
     const eventos = [
@@ -257,6 +256,7 @@ const EventosNoticias = () => {
                     </div>
                 </div>
             </main>
+            <Footer />
         </div>
     );
 };
