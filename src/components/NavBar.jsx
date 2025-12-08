@@ -275,19 +275,66 @@ const NavBar = () => {
                         </div>
 
                         {/* Mobile Contribuir expanded section */}
-                        <div className="mt-2 border-t border-gray-100 pt-2 px-3">
-                            <Link to="/contribuir?tab=donar" onClick={() => setIsMobileOpen(false)} className="block text-sm font-semibold text-gray-700 mb-2 hover:underline">
+                        <div>
+                            <button
+                                onClick={toggleDropdown}
+                                className={`w-full text-left px-3 py-2 rounded-md text-base font-medium flex items-center justify-between ${
+                                    isActive('/contribuir')
+                                        ? 'text-indigo-600 font-semibold bg-indigo-50'
+                                        : 'text-gray-700 hover:bg-gray-50'
+                                }`}
+                            >
                                 Contribuir
-                            </Link>
-                            <Link to="/contribuir?tab=donar" onClick={() => setIsMobileOpen(false)} className={`block px-3 py-2 rounded-md text-base ${activeTab === 'donar' ? 'text-indigo-600 font-semibold' : 'text-gray-700 hover:bg-gray-50'}`}>
-                                💰 Donar Fondos
-                            </Link>
-                            <Link to="/contribuir?tab=voluntario" onClick={() => setIsMobileOpen(false)} className={`block px-3 py-2 rounded-md text-base ${activeTab === 'voluntario' ? 'text-indigo-600 font-semibold' : 'text-gray-700 hover:bg-gray-50'}`}>
-                                🤝 Ser Voluntario
-                            </Link>
-                            <Link to="/contribuir?tab=proponer" onClick={() => setIsMobileOpen(false)} className={`block px-3 py-2 rounded-md text-base ${activeTab === 'proponer' ? 'text-indigo-600 font-semibold' : 'text-gray-700 hover:bg-gray-50'}`}>
-                                💡 Proponer Experimentos
-                            </Link>
+                                <span className={`text-sm transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`}>
+                                    ▼
+                                </span>
+                            </button>
+                            {isDropdownOpen && (
+                                <div className="pl-4 space-y-2 bg-gray-50 rounded-md mt-1">
+                                    <Link
+                                        to="/contribuir?tab=donar"
+                                        onClick={() => {
+                                            setIsDropdownOpen(false);
+                                            setIsMobileOpen(false);
+                                        }}
+                                        className={`block px-3 py-2 rounded-md text-base font-medium ${
+                                            activeTab === 'donar'
+                                                ? 'text-indigo-600 font-semibold'
+                                                : 'text-gray-700 hover:text-indigo-600'
+                                        }`}
+                                    >
+                                        💰 Donar Fondos
+                                    </Link>
+                                    <Link
+                                        to="/contribuir?tab=voluntario"
+                                        onClick={() => {
+                                            setIsDropdownOpen(false);
+                                            setIsMobileOpen(false);
+                                        }}
+                                        className={`block px-3 py-2 rounded-md text-base font-medium ${
+                                            activeTab === 'voluntario'
+                                                ? 'text-indigo-600 font-semibold'
+                                                : 'text-gray-700 hover:text-indigo-600'
+                                        }`}
+                                    >
+                                        🤝 Ser Voluntario
+                                    </Link>
+                                    <Link
+                                        to="/contribuir?tab=proponer"
+                                        onClick={() => {
+                                            setIsDropdownOpen(false);
+                                            setIsMobileOpen(false);
+                                        }}
+                                        className={`block px-3 py-2 rounded-md text-base font-medium ${
+                                            activeTab === 'proponer'
+                                                ? 'text-indigo-600 font-semibold'
+                                                : 'text-gray-700 hover:text-indigo-600'
+                                        }`}
+                                    >
+                                        💡 Proponer Experimentos
+                                    </Link>
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>
