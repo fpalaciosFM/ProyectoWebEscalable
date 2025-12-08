@@ -1,1 +1,26 @@
 @import "tailwindcss";
+
+/* 1. Aquí guardamos los colores en variables con nombres fáciles */
+:root {
+  --color-ciencia-rosa: #f16484;
+  --color-ciencia-morado: #822987;
+  --color-ciencia-azul: #3c64b0;
+  --color-ciencia-verde: #70bf4c;
+  --color-ciencia-amarillo: #ffd00e;
+  --color-ciencia-naranja: #f78b29;
+}
+
+/* 2. Aquí creamos una clase personalizada reutilizable */
+@layer utilities {
+  .bg-hero-rainbow {
+    background: linear-gradient(
+      to bottom right, 
+      var(--color-ciencia-rosa), 
+      var(--color-ciencia-morado), 
+      var(--color-ciencia-azul), 
+      var(--color-ciencia-verde), 
+      var(--color-ciencia-amarillo), 
+      var(--color-ciencia-naranja)
+    );
+  }
+}

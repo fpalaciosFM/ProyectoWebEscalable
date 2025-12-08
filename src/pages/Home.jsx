@@ -8,7 +8,7 @@ const Home = () => {
             {/* 1. NAVBAR / ENCABEZADO */}
             <nav className="flex justify-between items-center p-6 bg-white shadow-md">
                 <div className="text-2xl font-bold text-indigo-600 flex items-center gap-2">
-                    ⚛️ CienciaKids
+                    ⚛️ Puentes de 100cia
                 </div>
                 <div className="space-x-4">
                     {/* Enlaces de navegación (puedes agregar más luego) */}
@@ -18,7 +18,7 @@ const Home = () => {
             </nav>
 
             {/* 2. HERO SECTION (La parte principal que llama la atención) */}
-            <header className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white py-20 px-6 text-center">
+            <header className="bg-hero-rainbow text-white py-20 px-6 text-center">
                 <h1 className="text-4xl md:text-6xl font-extrabold mb-4">
                     Descubre la Magia de la Ciencia 🧪
                 </h1>
