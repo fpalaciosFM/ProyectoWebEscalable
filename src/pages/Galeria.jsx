@@ -93,7 +93,7 @@ const Galeria = () => {
             <NavBar />
 
             {/* Hero Section */}
-            <header className="bg-gradient-to-r from-indigo-500 to-purple-500 text-white py-16">
+            <header className="bg-hero-galeria text-white py-16">
                 <div className="max-w-6xl mx-auto px-6">
                     <h1 className="text-4xl md:text-5xl font-extrabold mb-4">Galería de Fotos</h1>
                     <p className="text-lg opacity-90">Revisa momentos especiales de nuestros talleres, eventos y actividades.</p>
@@ -180,7 +180,7 @@ const Galeria = () => {
                 )}
 
                 {/* CTA de Regreso */}
-                <section className="bg-gradient-to-r from-indigo-50 to-white p-8 rounded-lg text-center">
+                <section className="card-primary p-8 rounded-lg text-center">
                     <h3 className="text-xl font-bold mb-4">¿Quieres conocer más sobre nosotros?</h3>
                     <Link
                         to="/nosotros"

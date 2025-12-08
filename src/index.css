@@ -61,6 +61,39 @@
     );
   }
 
+  /* Hero Gradients por página - Identidad visual única para cada sección */
+  .bg-hero-nosotros {
+    background: linear-gradient(
+      135deg,
+      var(--color-primary) 0%,
+      var(--color-secondary) 100%
+    );
+  }
+
+  .bg-hero-contribuir {
+    background: linear-gradient(
+      135deg,
+      var(--color-success) 0%,
+      var(--color-accent) 100%
+    );
+  }
+
+  .bg-hero-eventos {
+    background: linear-gradient(
+      135deg,
+      var(--color-secondary) 0%,
+      var(--color-primary) 100%
+    );
+  }
+
+  .bg-hero-galeria {
+    background: linear-gradient(
+      135deg,
+      var(--color-accent) 0%,
+      var(--color-warning) 100%
+    );
+  }
+
   /* Botones - Variantes semánticas */
   .btn-primary {
     background-color: var(--color-primary);
@@ -73,6 +106,25 @@
 
   .btn-primary:hover {
     background-color: var(--color-primary-dark);
+  }
+
+  /* Botón principal unificado - Usado en todos los CTAs principales
+     Estilos: blanco con texto azul, redondeado, sombra y efecto hover
+     Aplicado en: Home, Nosotros, Contribuir, EventosNoticias
+     Garantiza consistencia visual en toda la aplicación */
+  .btn-main {
+    background-color: white;
+    color: var(--color-primary);
+    font-weight: bold;
+    padding: 0.75rem 1.25rem;
+    border-radius: 9999px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+
+  .btn-main:hover {
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
+    transform: scale(1.05);
   }
 
   .btn-primary-outline {

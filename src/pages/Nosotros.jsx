@@ -51,14 +51,14 @@ const Nosotros = () => {
         <div className="min-h-screen bg-slate-50">
             <NavBar />
 
-            <header className="bg-gradient-to-r from-indigo-500 to-purple-500 text-white py-20">
+            <header className="bg-hero-nosotros text-white py-20">
                 <div className="max-w-5xl mx-auto px-6 flex flex-col md:flex-row items-center gap-8">
                     <div className="md:w-1/2">
                         <h1 className="text-4xl md:text-5xl font-extrabold mb-4">Nosotros</h1>
                         <p className="text-lg opacity-90 mb-6">Conectamos niños con experiencias prácticas de ciencia, promoviendo curiosidad y pensamiento crítico.</p>
                         <div className="flex gap-3">
-                            <Link to={{ pathname: "/contribuir", search: "?tab=donar" }} className="bg-amber-400 text-black font-bold py-3 px-5 rounded-lg">Donar</Link>
-                            <Link to={{ pathname: "/contribuir", search: "?tab=voluntario" }} className="bg-white text-indigo-600 font-semibold py-3 px-5 rounded-lg">Ser Voluntario</Link>
+                            <Link to={{ pathname: "/contribuir", search: "?tab=donar" }} className="btn-main">Donar</Link>
+                            <Link to={{ pathname: "/contribuir", search: "?tab=voluntario" }} className="btn-main">Ser Voluntario</Link>
                         </div>
                     </div>
 
@@ -126,7 +126,7 @@ const Nosotros = () => {
                     <div className="text-center mt-6">
                         <Link
                             to="/galeria"
-                            className="inline-block bg-indigo-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-indigo-700 transition"
+                            className="btn-main inline-block"
                         >
                             Ver Galería Completa →
                         </Link>

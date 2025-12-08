@@ -13,6 +13,10 @@ Proyecto web para apoyar talleres de divulgación científica dirigidos a niños
 - Componentes reutilizables: `NavBar` (responsive), `TeamCard`, `StatsCounter`, `SocialIcon`, `Carrusel`, `EventCard`, `NoticiaCard`, `Calendario`.
 - Integración de `react-icons` para iconos de redes sociales optimizados.
 - **UX mejorada:** scroll automático al tope al navegar entre páginas.
+- **Sistema de diseño semántico:**
+  - Paleta de colores definida en variables CSS (6 colores ciencia + 40+ variables semánticas)
+  - Clases reutilizables: `.btn-main`, `.btn-primary`, `.card-*`, `.badge-*`, `.link-*`, `.text-*`
+  - Degradados personalizados por página (hero sections con identidad visual única)
 
 ## 🚀 Stack Tecnológico
 
@@ -97,9 +101,42 @@ Centraliza información de actividades y novedades:
 
 Actualmente los formularios y botones son estáticos (mock). La arquitectura está preparada para conectar con pasarelas de pago y APIs en el futuro.
 
+## 🎨 Sistema de Diseño (Design System)
+
+### Paleta de Colores Semántica
+Definida en `src/index.css` con variables CSS para asegurar consistencia:
+
+- **Colores Base (Ciencia):** 6 colores inspirados en disciplinas científicas:
+  - Rosa, Morado, Azul, Verde, Amarillo, Naranja
+
+- **Colores Semánticos:** mapeados a funciones UX:
+  - `--color-primary` (Azul): navegación, enlaces activos, información primaria
+  - `--color-success` (Verde): acciones positivas, donaciones, éxito
+  - `--color-accent` (Rosa): CTAs secundarias, destacados
+  - `--color-warning` (Naranja): alertas, atención requerida
+  - `--color-secondary` (Morado): información secundaria, eventos
+
+- **Variantes:** cada color incluye tonos oscuros (`-dark`) y claros (`-light`) para mejor legibilidad.
+
+### Clases CSS Reutilizables
+Sistema de clases predefinidas en `src/index.css`:
+- **Botones:** `.btn-main`, `.btn-primary`, `.btn-success`, `.btn-accent`, `.btn-warning`
+- **Tarjetas:** `.card-primary`, `.card-success`, `.card-accent`, `.card-warning`
+- **Badges:** `.badge-primary`, `.badge-success`, `.badge-accent`, `.badge-warning`, `.badge-secondary`
+- **Enlaces:** `.link-primary`, `.link-accent`
+- **Textos:** `.text-primary`, `.text-success`, `.text-accent`, `.text-warning`, `.text-secondary`, `.text-muted`
+- **Degradados de Hero:** `.bg-hero-rainbow`, `.bg-hero-nosotros`, `.bg-hero-contribuir`, `.bg-hero-eventos`, `.bg-hero-galeria`
+
+### Convención de Colores
+Todos los botones principales y CTAs usan la clase `.btn-main` para asegurar:
+- Consistencia visual en toda la aplicación
+- Facilidad de mantenimiento y cambios futuros
+- Experiencia de usuario coherente
+
 ## 📱 NavBar responsive (móvil)
 
 - En pantallas pequeñas el `NavBar` muestra un botón hamburguesa que abre un panel con los enlaces principales.
+- Incluye dropdown "Explorar" que agrupa: Experimentos, Galería, Eventos y Noticias.
 - La sección **Contribuir** incluye sub-enlaces que utilizan el query param `tab` para identificar la subsección activa. Ejemplos:
 	- `#/contribuir?tab=donar` — Donar Fondos (resaltado cuando `tab=donar`)
 	- `#/contribuir?tab=voluntario` — Ser Voluntario (resaltado cuando `tab=voluntario`)

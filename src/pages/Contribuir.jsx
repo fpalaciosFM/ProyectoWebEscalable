@@ -26,7 +26,7 @@ const Contribuir = () => {
         <div className="min-h-screen bg-slate-50">
             <NavBar />
             {/* Hero Section */}
-            <div className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-12 px-6 text-center">
+            <div className="bg-hero-contribuir text-white py-12 px-6 text-center">
                 <h1 className="text-4xl md:text-5xl font-extrabold mb-4">
                     ¡Sé Parte del Cambio! 🌟
                 </h1>
@@ -41,28 +41,31 @@ const Contribuir = () => {
                 <div className="flex flex-wrap gap-4 justify-center mb-12">
                     <Link
                         to="/contribuir?tab=donar"
-                        className={`px-8 py-3 rounded-full font-bold transition ${activeTab === 'donar'
-                                ? 'bg-indigo-600 text-white shadow-lg'
-                                : 'bg-white text-gray-800 border-2 border-gray-300 hover:border-indigo-600'
-                            }`}
+                        className={`px-8 py-3 rounded-full font-bold transition ${
+                            activeTab === 'donar'
+                                ? 'bg-[var(--color-success)] text-white shadow-lg'
+                                : 'bg-white text-gray-800 border-2 border-gray-300 hover:border-[var(--color-success)]'
+                        }`}
                     >
                         💰 Donar Fondos
                     </Link>
                     <Link
                         to="/contribuir?tab=voluntario"
-                        className={`px-8 py-3 rounded-full font-bold transition ${activeTab === 'voluntario'
-                                ? 'bg-indigo-600 text-white shadow-lg'
-                                : 'bg-white text-gray-800 border-2 border-gray-300 hover:border-indigo-600'
-                            }`}
+                        className={`px-8 py-3 rounded-full font-bold transition ${
+                            activeTab === 'voluntario'
+                                ? 'bg-[var(--color-primary)] text-white shadow-lg'
+                                : 'bg-white text-gray-800 border-2 border-gray-300 hover:border-[var(--color-primary)]'
+                        }`}
                     >
                         🤝 Ser Voluntario
                     </Link>
                     <Link
                         to="/contribuir?tab=proponer"
-                        className={`px-8 py-3 rounded-full font-bold transition ${activeTab === 'proponer'
-                                ? 'bg-indigo-600 text-white shadow-lg'
-                                : 'bg-white text-gray-800 border-2 border-gray-300 hover:border-indigo-600'
-                            }`}
+                        className={`px-8 py-3 rounded-full font-bold transition ${
+                            activeTab === 'proponer'
+                                ? 'bg-[var(--color-accent)] text-white shadow-lg'
+                                : 'bg-white text-gray-800 border-2 border-gray-300 hover:border-[var(--color-accent)]'
+                        }`}
                     >
                         💡 Proponer Experimentos
                     </Link>
@@ -73,7 +76,7 @@ const Contribuir = () => {
                     {/* TAB: Donar Fondos */}
                     {activeTab === 'donar' && (
                         <div>
-                            <h2 className="text-3xl font-bold mb-6 text-indigo-600">💰 Donar Fondos</h2>
+                            <h2 className="text-3xl font-bold mb-6 text-success">💰 Donar Fondos</h2>
                             <p className="text-gray-700 text-lg mb-6">
                                 Tu donación nos ayuda a comprar materiales, transportarnos a comunidades,
                                 y mejorar nuestros talleres para que más niños accedan a la ciencia de calidad.
@@ -96,7 +99,7 @@ const Contribuir = () => {
                                     <div className="text-4xl mb-3">🌱</div>
                                     <p className="font-bold text-green-900 text-lg">$200 MXN</p>
                                     <p className="text-sm text-gray-700 mb-4">Materiales para 5 niños</p>
-                                    <button className="bg-green-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-green-700 transition w-full">
+                                    <button className="btn-main w-full">
                                         Donar Ahora
                                     </button>
                                 </div>
@@ -107,7 +110,7 @@ const Contribuir = () => {
                                     <p className="font-bold text-blue-900 text-lg">$500 MXN</p>
                                     <p className="text-sm text-gray-700 mb-4">Taller completo para un grupo</p>
                                     <p className="text-xs text-blue-600 font-bold mb-3">⭐ MÁS POPULAR</p>
-                                    <button className="bg-blue-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-blue-700 transition w-full">
+                                    <button className="btn-main w-full">
                                         Donar Ahora
                                     </button>
                                 </div>
@@ -117,7 +120,7 @@ const Contribuir = () => {
                                     <div className="text-4xl mb-3">🚀</div>
                                     <p className="font-bold text-purple-900 text-lg">$1,000 MXN</p>
                                     <p className="text-sm text-gray-700 mb-4">Equipo completo de laboratorio</p>
-                                    <button className="bg-purple-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-purple-700 transition w-full">
+                                    <button className="btn-main w-full">
                                         Donar Ahora
                                     </button>
                                 </div>
@@ -136,7 +139,7 @@ const Contribuir = () => {
                     {/* TAB: Ser Voluntario */}
                     {activeTab === 'voluntario' && (
                         <div>
-                            <h2 className="text-3xl font-bold mb-6 text-indigo-600">🤝 Ser Voluntario</h2>
+                            <h2 className="text-3xl font-bold mb-6 text-primary">🤝 Ser Voluntario</h2>
                             <p className="text-gray-700 text-lg mb-6">
                                 ¿Te apasiona la ciencia y quieres inspirar a la próxima generación?
                                 Únete a nuestro equipo de voluntarios.
@@ -194,7 +197,7 @@ const Contribuir = () => {
                             </div>
 
                             <div className="mt-8">
-                                <button className="w-full bg-indigo-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-indigo-700 transition text-lg">
+                                <button className="btn-main w-full text-lg">
                                     ¡Quiero Ser Voluntario! 📝
                                 </button>
                             </div>
@@ -204,7 +207,7 @@ const Contribuir = () => {
                     {/* TAB: Proponer Experimentos */}
                     {activeTab === 'proponer' && (
                         <div>
-                            <h2 className="text-3xl font-bold mb-6 text-indigo-600">💡 Proponer Experimentos</h2>
+                            <h2 className="text-3xl font-bold mb-6 text-accent">💡 Proponer Experimentos</h2>
                             <p className="text-gray-700 text-lg mb-6">
                                 ¿Tienes una idea de experimento genial? ¿Conoces un científico local dispuesto a colaborar?
                                 ¡Comparte tus ideas con nosotros!

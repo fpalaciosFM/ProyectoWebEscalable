@@ -46,13 +46,13 @@ const Home = () => {
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <Link
                             to="/experimentos"
-                            className="bg-white text-indigo-600 font-bold py-4 px-10 rounded-full shadow-lg hover:bg-yellow-300 hover:text-indigo-800 transition transform hover:scale-105 inline-block"
+                            className="btn-main inline-block"
                         >
                             🔬 Explorar Experimentos
                         </Link>
                         <Link
                             to="/nosotros"
-                            className="btn-primary-outline py-4 px-10 text-lg inline-block"
+                            className="btn-main inline-block"
                         >
                             👥 Conocer nuestro equipo
                         </Link>
@@ -122,7 +122,7 @@ const Home = () => {
                             </p>
                             <Link
                                 to="/nosotros"
-                                className="inline-block bg-indigo-600 text-white font-bold py-3 px-8 rounded-full hover:bg-indigo-700 transition transform hover:scale-105"
+                                className="btn-main inline-block"
                             >
                                 Leer Nuestra Historia →
                             </Link>
@@ -158,7 +158,7 @@ const Home = () => {
                             </p>
                             <Link
                                 to="/contribuir?tab=donar"
-                                className="btn-success"
+                                className="btn-main inline-block"
                             >
                                 Donar Ahora
                             </Link>
@@ -173,7 +173,7 @@ const Home = () => {
                             </p>
                             <Link
                                 to="/contribuir?tab=voluntario"
-                                className="btn-primary"
+                                className="btn-main inline-block"
                             >
                                 Voluntariado
                             </Link>
@@ -188,7 +188,7 @@ const Home = () => {
                             </p>
                             <Link
                                 to="/contribuir?tab=proponer"
-                                className="btn-accent"
+                                className="btn-main inline-block"
                             >
                                 Proponer
                             </Link>
@@ -232,7 +232,7 @@ const Home = () => {
                     </p>
                     <Link
                         to="/experimentos"
-                        className="inline-block bg-white text-accent font-bold py-3 px-10 rounded-full hover:opacity-90 transition transform hover:scale-105"
+                        className="btn-main inline-block"
                     >
                         ¡Comenzar Ahora!
                     </Link>

@@ -142,7 +142,7 @@ const EventosNoticias = () => {
             <NavBar />
 
             {/* Hero Section */}
-            <header className="bg-gradient-to-r from-indigo-500 to-purple-500 text-white py-16">
+            <header className="bg-hero-eventos text-white py-16">
                 <div className="max-w-6xl mx-auto px-6">
                     <h1 className="text-4xl md:text-5xl font-extrabold mb-4">Eventos y Noticias</h1>
                     <p className="text-lg opacity-90">Mantente informado sobre nuestras próximas actividades y novedades del proyecto.</p>
@@ -233,7 +233,7 @@ const EventosNoticias = () => {
                                         </p>
                                         <p className="text-gray-800 font-bold mb-2">{eventosFiltrados[0].titulo}</p>
                                         <p className="text-sm text-gray-600 mb-4">{eventosFiltrados[0].ubicacion}</p>
-                                        <button className="w-full bg-indigo-600 text-white font-semibold py-2 rounded-lg hover:bg-indigo-700 transition">
+                                        <button className="btn-main w-full">
                                             Registrarse
                                         </button>
                                     </div>
@@ -249,7 +249,7 @@ const EventosNoticias = () => {
                                     placeholder="tu@email.com"
                                     className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm mb-3 focus:outline-none focus:ring-2 focus:ring-indigo-600"
                                 />
-                                <button className="w-full bg-indigo-600 text-white font-semibold py-2 rounded-lg hover:bg-indigo-700 transition text-sm">
+                                <button className="btn-main w-full">
                                     Suscribirse
                                 </button>
                             </div>
