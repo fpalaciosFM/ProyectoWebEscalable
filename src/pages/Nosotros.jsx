@@ -4,44 +4,15 @@ import Footer from '../components/Footer';
 import TeamCard from '../components/TeamCard';
 import StatsCounter from '../components/StatsCounter';
 import Carrusel from '../components/Carrusel';
+import SocialIcon from '../components/SocialIcon';
 import { useScrollTop } from '../hooks/useScrollTop';
 import { Link } from 'react-router-dom';
+import { teamMembers, carouselImages, impactStats, testimonies, timeline } from '../data/nosotrosData';
 
 /**
  * Nosotros (About) page - illustrated style scaffold
  */
 const Nosotros = () => {
-    const team = [
-        { name: 'Angelina Vázquez', role: 'Fundadora / Educadora', bio: '15 años en educación informal y diseño de talleres.' },
-        { name: 'Carlos Pérez', role: 'Coordinador de Proyectos', bio: 'Gestión y logística para actividades comunitarias.' },
-        { name: 'Ana Gómez', role: 'Comunicación y Alianzas', bio: 'Relación con escuelas y organizaciones locales.' },
-        { name: 'Fernando Palacios', role: 'Voluntario y Tech', bio: 'Divulgación de ciencia y programador de plataforma web' },
-    ];
-
-    // Datos para el carrusel
-    const imagenesCarrusel = [
-        {
-            src: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400"%3E%3Crect fill="%23f0f4ff" width="800" height="400"/%3E%3Ctext x="400" y="200" font-size="80" fill="%236366f1" text-anchor="middle" dominant-baseline="middle"%3E🧪%3C/text%3E%3C/svg%3E',
-            titulo: 'Talleres Prácticos de Ciencia',
-            descripcion: 'Niños descubriendo los secretos de la química y física a través de experimentos interactivos.'
-        },
-        {
-            src: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400"%3E%3Crect fill="%23f0fdf4" width="800" height="400"/%3E%3Ctext x="400" y="200" font-size="80" fill="%2310b981" text-anchor="middle" dominant-baseline="middle"%3E🎪%3C/text%3E%3C/svg%3E',
-            titulo: 'Eventos Comunitarios',
-            descripcion: 'Feria de ciencia que reúne a cientos de familias interesadas en aprender juntos.'
-        },
-        {
-            src: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400"%3E%3Crect fill="%23fef3c7" width="800" height="400"/%3E%3Ctext x="400" y="200" font-size="80" fill="%23d97706" text-anchor="middle" dominant-baseline="middle"%3E👨%E2%80%8D🏫%3C/text%3E%3C/svg%3E',
-            titulo: 'Formación de Docentes',
-            descripcion: 'Capacitación continua para maestros en metodología STEAM y educación inclusiva.'
-        },
-        {
-            src: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400"%3E%3Crect fill="%23fce7f3" width="800" height="400"/%3E%3Ctext x="400" y="200" font-size="80" fill="%23ec4899" text-anchor="middle" dominant-baseline="middle"%3E🤝%3C/text%3E%3C/svg%3E',
-            titulo: 'Voluntarios en Acción',
-            descripcion: 'Nuestro equipo de voluntarios preparando materiales y apoyando las actividades.'
-        }
-    ];
-
     // Scroll to top when component mounts
     useScrollTop();
 
@@ -80,12 +51,9 @@ const Nosotros = () => {
                     <h2 className="text-2xl font-bold mb-4">Impacto / Números clave</h2>
                     <p className="text-gray-700 mb-6">Algunas cifras representativas del trabajo realizado hasta ahora.</p>
                     <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-6">
-                        <StatsCounter value="+1,200" label="Niños impactados" />
-                        <StatsCounter value="+250" label="Talleres realizados" />
-                        <StatsCounter value="+30" label="Escuelas aliadas" />
-                        <StatsCounter value="+3,500" label="Materiales distribuidos" />
-                        <StatsCounter value="+120" label="Voluntarios activos" />
-                        <StatsCounter value="+5" label="Ciudades atendidas" />
+                        {impactStats.map((stat) => (
+                            <StatsCounter key={stat.label} value={stat.value} label={stat.label} />
+                        ))}
                     </div>
                 </section>
 
@@ -120,7 +88,7 @@ const Nosotros = () => {
                 <section className="mb-12">
                     <h2 className="text-2xl font-bold mb-6">Galería de Momentos</h2>
                     <p className="text-gray-700 mb-6">Un vistazo a nuestros talleres, eventos y actividades en acción.</p>
-                    <Carrusel images={imagenesCarrusel} autoplayDelay={4000} />
+                    <Carrusel images={carouselImages} autoplayDelay={4000} />
                     <div className="text-center mt-6">
                         <Link
                             to="/galeria"
@@ -134,7 +102,7 @@ const Nosotros = () => {
                 <section className="mb-12">
                     <h2 className="text-2xl font-bold mb-6">Equipo</h2>
                     <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
-                        {team.map((t) => (
+                        {teamMembers.map((t) => (
                             <TeamCard key={t.name} name={t.name} role={t.role} bio={t.bio} />
                         ))}
                     </div>
@@ -203,50 +171,22 @@ const Nosotros = () => {
                     <h2 className="text-2xl font-bold mb-4">Historias / Testimonios</h2>
                     <p className="text-gray-700 mb-6">Algunas voces de quienes han participado en los talleres y actividades.</p>
                     <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
-                        <div className="bg-white p-6 rounded-xl shadow-md">
-                            <p className="text-gray-800 italic mb-4">"Mi hija volvió a casa emocionada, construyó un volcán y quiso aprender más. Ahora hace pequeñas investigaciones con sus amigos."</p>
-                            <div className="flex items-center gap-3">
-                                <div className="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center">
-                                    <svg className="w-5 h-5 text-indigo-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M12 12c2.761 0 5-2.239 5-5s-2.239-5-5-5-5 2.239-5 5 2.239 5 5 5z" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-                                    </svg>
-                                </div>
-                                <div>
-                                    <div className="font-semibold">María, madre</div>
-                                    <div className="text-sm text-gray-500">Ciudad de México</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="bg-white p-6 rounded-xl shadow-md">
-                            <p className="text-gray-800 italic mb-4">"Como docente, las guías nos permitieron replicar experimentos con pocos recursos y gran impacto en la comprensión de conceptos."</p>
-                            <div className="flex items-center gap-3">
-                                <div className="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center">
-                                    <svg className="w-5 h-5 text-indigo-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M12 12c2.761 0 5-2.239 5-5s-2.239-5-5-5-5 2.239-5 5 2.239 5 5 5z" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-                                    </svg>
-                                </div>
-                                <div>
-                                    <div className="font-semibold">José, profesor</div>
-                                    <div className="text-sm text-gray-500">Veracruz</div>
+                        {testimonies.map((testimony) => (
+                            <div key={testimony.author} className="bg-white p-6 rounded-xl shadow-md">
+                                <p className="text-gray-800 italic mb-4">"{testimony.quote}"</p>
+                                <div className="flex items-center gap-3">
+                                    <div className="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center">
+                                        <svg className="w-5 h-5 text-indigo-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M12 12c2.761 0 5-2.239 5-5s-2.239-5-5-5-5 2.239-5 5 2.239 5 5 5z" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <div className="font-semibold">{testimony.author}</div>
+                                        <div className="text-sm text-gray-500">{testimony.city}</div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-
-                        <div className="bg-white p-6 rounded-xl shadow-md">
-                            <p className="text-gray-800 italic mb-4">"Participé como voluntario y fue increíble ver la curiosidad que despiertan los experimentos; la sonrisa de los niños lo dice todo."</p>
-                            <div className="flex items-center gap-3">
-                                <div className="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center">
-                                    <svg className="w-5 h-5 text-indigo-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M12 12c2.761 0 5-2.239 5-5s-2.239-5-5-5-5 2.239-5 5 2.239 5 5 5z" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-                                    </svg>
-                                </div>
-                                <div>
-                                    <div className="font-semibold">Andrea, voluntaria</div>
-                                    <div className="text-sm text-gray-500">Guadalajara</div>
-                                </div>
-                            </div>
-                        </div>
+                        ))}
                     </div>
                 </section>
 
@@ -255,70 +195,18 @@ const Nosotros = () => {
                     <p className="text-gray-700 mb-8">Hitos importantes en el desarrollo de Puentes de 100cia.</p>
                     
                     <div className="space-y-6">
-                        <div className="flex gap-4">
-                            <div className="flex flex-col items-center">
-                                <div className="w-4 h-4 bg-indigo-600 rounded-full"></div>
-                                <div className="w-1 h-20 bg-gray-300"></div>
+                        {timeline.map((event, index) => (
+                            <div key={event.year} className="flex gap-4">
+                                <div className="flex flex-col items-center">
+                                    <div className={`w-4 h-4 rounded-full ${index === timeline.length - 1 ? 'bg-green-500' : 'bg-indigo-600'}`}></div>
+                                    {index < timeline.length - 1 && <div className="w-1 h-20 bg-gray-300"></div>}
+                                </div>
+                                <div>
+                                    <div className={`font-bold text-lg ${index === timeline.length - 1 ? 'text-green-600' : 'text-indigo-600'}`}>{event.year}</div>
+                                    <p className="text-gray-700"><strong>{event.title}</strong> — {event.description}</p>
+                                </div>
                             </div>
-                            <div>
-                                <div className="font-bold text-lg text-indigo-600">2019</div>
-                                <p className="text-gray-700"><strong>Inicio del proyecto</strong> — Angelina y equipo diseñan los primeros talleres en una escuela local.</p>
-                            </div>
-                        </div>
-
-                        <div className="flex gap-4">
-                            <div className="flex flex-col items-center">
-                                <div className="w-4 h-4 bg-indigo-600 rounded-full"></div>
-                                <div className="w-1 h-20 bg-gray-300"></div>
-                            </div>
-                            <div>
-                                <div className="font-bold text-lg text-indigo-600">2020</div>
-                                <p className="text-gray-700"><strong>Expansión a 10 escuelas</strong> — A pesar de la pandemia, migran talleres a modalidad híbrida y crean recursos en línea.</p>
-                            </div>
-                        </div>
-
-                        <div className="flex gap-4">
-                            <div className="flex flex-col items-center">
-                                <div className="w-4 h-4 bg-indigo-600 rounded-full"></div>
-                                <div className="w-1 h-20 bg-gray-300"></div>
-                            </div>
-                            <div>
-                                <div className="font-bold text-lg text-indigo-600">2021</div>
-                                <p className="text-gray-700"><strong>Primer 1,000 niños impactados</strong> — Llegan a 30 escuelas y se forma el equipo núcleo de 5 coordinadores.</p>
-                            </div>
-                        </div>
-
-                        <div className="flex gap-4">
-                            <div className="flex flex-col items-center">
-                                <div className="w-4 h-4 bg-indigo-600 rounded-full"></div>
-                                <div className="w-1 h-20 bg-gray-300"></div>
-                            </div>
-                            <div>
-                                <div className="font-bold text-lg text-indigo-600">2022-2023</div>
-                                <p className="text-gray-700"><strong>Desarrollo de plataforma web</strong> — Lanzan sitio web, repositorio de recursos abiertos y sistema de voluntariado en línea.</p>
-                            </div>
-                        </div>
-
-                        <div className="flex gap-4">
-                            <div className="flex flex-col items-center">
-                                <div className="w-4 h-4 bg-indigo-600 rounded-full"></div>
-                                <div className="w-1 h-20 bg-gray-300"></div>
-                            </div>
-                            <div>
-                                <div className="font-bold text-lg text-indigo-600">2024-2025</div>
-                                <p className="text-gray-700"><strong>Consolidación regional</strong> — 1,200+ niños, 250+ talleres, 120 voluntarios activos y alianzas en 5 ciudades.</p>
-                            </div>
-                        </div>
-
-                        <div className="flex gap-4">
-                            <div className="flex flex-col items-center">
-                                <div className="w-4 h-4 bg-green-500 rounded-full"></div>
-                            </div>
-                            <div>
-                                <div className="font-bold text-lg text-green-600">Próximos pasos</div>
-                                <p className="text-gray-700">Expansión a nuevas regiones, programa de becas para docentes y desarrollo de kits de bajo costo para educación rural.</p>
-                            </div>
-                        </div>
+                        ))}
                     </div>
                 </section>
 

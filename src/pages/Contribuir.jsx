@@ -1,7 +1,8 @@
-import { useSearchParams, Link, useLocation } from 'react-router-dom';
+import { useSearchParams, Link } from 'react-router-dom';
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 import { useScrollTop } from '../hooks/useScrollTop';
+import { donationOptions, volunteerRoles, proposalTypes, faqItems } from '../data/contribuirData';
 
 /**
  * Contribuir Page
@@ -91,36 +92,30 @@ const Contribuir = () => {
 
                             <h3 className="text-2xl font-bold mb-6 text-gray-800">Opciones de Donación</h3>
                             <div className="grid md:grid-cols-3 gap-6">
-                                {/* Donación 1 */}
-                                <div className="bg-gradient-to-br from-green-50 to-green-100 border-2 border-green-300 rounded-xl p-6 text-center hover:shadow-lg transition">
-                                    <div className="text-4xl mb-3">🌱</div>
-                                    <p className="font-bold text-green-900 text-lg">$200 MXN</p>
-                                    <p className="text-sm text-gray-700 mb-4">Materiales para 5 niños</p>
-                                    <button className="btn-main w-full">
-                                        Donar Ahora
-                                    </button>
-                                </div>
-
-                                {/* Donación 2 */}
-                                <div className="bg-gradient-to-br from-blue-50 to-blue-100 border-2 border-blue-300 rounded-xl p-6 text-center hover:shadow-lg transition transform scale-105">
-                                    <div className="text-4xl mb-3">🔬</div>
-                                    <p className="font-bold text-blue-900 text-lg">$500 MXN</p>
-                                    <p className="text-sm text-gray-700 mb-4">Taller completo para un grupo</p>
-                                    <p className="text-xs text-blue-600 font-bold mb-3">⭐ MÁS POPULAR</p>
-                                    <button className="btn-main w-full">
-                                        Donar Ahora
-                                    </button>
-                                </div>
-
-                                {/* Donación 3 */}
-                                <div className="bg-gradient-to-br from-purple-50 to-purple-100 border-2 border-purple-300 rounded-xl p-6 text-center hover:shadow-lg transition">
-                                    <div className="text-4xl mb-3">🚀</div>
-                                    <p className="font-bold text-purple-900 text-lg">$1,000 MXN</p>
-                                    <p className="text-sm text-gray-700 mb-4">Equipo completo de laboratorio</p>
-                                    <button className="btn-main w-full">
-                                        Donar Ahora
-                                    </button>
-                                </div>
+                                {donationOptions.map((option) => (
+                                    <div
+                                        key={option.id}
+                                        className={`bg-gradient-to-br border-2 rounded-xl p-6 text-center hover:shadow-lg transition ${
+                                            option.popular ? 'transform scale-105' : ''
+                                        }`}
+                                        style={{
+                                            backgroundImage: `linear-gradient(to bottom right, ${option.bgFrom}, ${option.bgTo})`,
+                                            borderColor: option.borderColor,
+                                        }}
+                                    >
+                                        <div className="text-4xl mb-3">{option.emoji}</div>
+                                        <p className="font-bold text-lg mb-1" style={{ color: option.textColor }}>
+                                            {option.amount}
+                                        </p>
+                                        <p className="text-sm text-gray-700 mb-4">{option.description}</p>
+                                        {option.popular && (
+                                            <p className="text-xs font-bold mb-3" style={{ color: option.badgeColor }}>
+                                                ⭐ MÁS POPULAR
+                                            </p>
+                                        )}
+                                        <button className="btn-main w-full">Donar Ahora</button>
+                                    </div>
+                                ))}
                             </div>
 
                             <div className="mt-8 p-6 bg-amber-50 border-l-4 border-amber-600 rounded">
@@ -144,42 +139,15 @@ const Contribuir = () => {
 
                             <h3 className="text-2xl font-bold mb-4 text-gray-800">Roles de Voluntarios</h3>
                             <div className="space-y-6">
-                                {/* Rol 1 */}
-                                <div className="border-l-4 border-indigo-600 pl-6 py-4">
-                                    <h4 className="text-xl font-bold text-indigo-600 mb-2">📚 Facilitador de Talleres</h4>
-                                    <p className="text-gray-700 mb-3">
-                                        Ayuda a dirigir talleres presenciales en comunidades. No necesitas ser experto en ciencia;
-                                        te proporcionamos capacitación.
-                                    </p>
-                                    <p className="text-sm text-gray-600">Tiempo: 4 horas/mes | Lugar: Flexible</p>
-                                </div>
-
-                                {/* Rol 2 */}
-                                <div className="border-l-4 border-green-600 pl-6 py-4">
-                                    <h4 className="text-xl font-bold text-green-600 mb-2">💻 Asistente Digital</h4>
-                                    <p className="text-gray-700 mb-3">
-                                        Ayuda a desarrollar contenido, mejorar la plataforma, crear videos o editar materiales.
-                                    </p>
-                                    <p className="text-sm text-gray-600">Tiempo: Flexible | Lugar: Remoto</p>
-                                </div>
-
-                                {/* Rol 3 */}
-                                <div className="border-l-4 border-purple-600 pl-6 py-4">
-                                    <h4 className="text-xl font-bold text-purple-600 mb-2">🎨 Creador de Contenido</h4>
-                                    <p className="text-gray-700 mb-3">
-                                        Diseña guías, crea ilustraciones, o produce videos educativos sobre experimentos.
-                                    </p>
-                                    <p className="text-sm text-gray-600">Tiempo: Flexible | Lugar: Remoto</p>
-                                </div>
-
-                                {/* Rol 4 */}
-                                <div className="border-l-4 border-red-600 pl-6 py-4">
-                                    <h4 className="text-xl font-bold text-red-600 mb-2">🤝 Coordinador de Alianzas</h4>
-                                    <p className="text-gray-700 mb-3">
-                                        Conecta con instituciones, escuelas y organizaciones para expandir nuestro alcance.
-                                    </p>
-                                    <p className="text-sm text-gray-600">Tiempo: 5-10 horas/mes | Lugar: Flexible</p>
-                                </div>
+                                {volunteerRoles.map((role) => (
+                                    <div key={role.id} className="pl-6 py-4 border-l-4" style={{ borderColor: role.borderColor }}>
+                                        <h4 className="text-xl font-bold mb-2" style={{ color: role.borderColor }}>
+                                            {role.emoji} {role.title}
+                                        </h4>
+                                        <p className="text-gray-700 mb-3">{role.description}</p>
+                                        <p className="text-sm text-gray-600">{role.details}</p>
+                                    </div>
+                                ))}
                             </div>
 
                             <div className="mt-8 bg-indigo-50 border-l-4 border-indigo-600 p-6 rounded">
@@ -288,10 +256,9 @@ const Contribuir = () => {
                                         <label className="block text-gray-700 font-bold mb-2">Tipo de Propuesta</label>
                                         <select className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-600">
                                             <option>Selecciona una opción...</option>
-                                            <option>Experimento Simple</option>
-                                            <option>Colaborador Experto</option>
-                                            <option>Recurso Educativo</option>
-                                            <option>Alianza o Espacio</option>
+                                            {proposalTypes.map((type) => (
+                                                <option key={type.id}>{type.name}</option>
+                                            ))}
                                         </select>
                                     </div>
 
@@ -320,37 +287,12 @@ const Contribuir = () => {
             <div className="max-w-4xl mx-auto px-6 py-16">
                 <h2 className="text-3xl font-bold mb-8 text-center text-gray-800">Preguntas Frecuentes</h2>
                 <div className="space-y-4">
-                    <details className="bg-white p-6 rounded-lg shadow hover:shadow-md transition cursor-pointer">
-                        <summary className="font-bold text-lg text-indigo-600">¿Cuál es la mejor forma de contribuir?</summary>
-                        <p className="text-gray-700 mt-4">
-                            La mejor forma es la que mejor se ajusta a ti. Todos los aportes son valiosos:
-                            dinero, tiempo, ideas y conexiones. Elige lo que te sientas cómodo dando.
-                        </p>
-                    </details>
-
-                    <details className="bg-white p-6 rounded-lg shadow hover:shadow-md transition cursor-pointer">
-                        <summary className="font-bold text-lg text-indigo-600">¿Recibiré recibos de mis donaciones?</summary>
-                        <p className="text-gray-700 mt-4">
-                            Sí. Cada donación genera un recibo automático. Además, recibirás acceso a reportes
-                            trimestrales que muestran cómo se usaron tus aportes.
-                        </p>
-                    </details>
-
-                    <details className="bg-white p-6 rounded-lg shadow hover:shadow-md transition cursor-pointer">
-                        <summary className="font-bold text-lg text-indigo-600">¿Necesito experiencia para ser voluntario?</summary>
-                        <p className="text-gray-700 mt-4">
-                            No. Proporcionamos capacitación para todos los roles. Solo necesitas pasión por la ciencia
-                            y ganas de trabajar con niños.
-                        </p>
-                    </details>
-
-                    <details className="bg-white p-6 rounded-lg shadow hover:shadow-md transition cursor-pointer">
-                        <summary className="font-bold text-lg text-indigo-600">¿Cuánto tiempo requiere ser voluntario?</summary>
-                        <p className="text-gray-700 mt-4">
-                            Depende del rol. Algunos requieren 2-4 horas/mes, otros son completamente flexibles (remoto).
-                            Tú decides cuánto tiempo dedicar.
-                        </p>
-                    </details>
+                    {faqItems.map((item) => (
+                        <details key={item.id} className="bg-white p-6 rounded-lg shadow hover:shadow-md transition cursor-pointer">
+                            <summary className="font-bold text-lg text-indigo-600">{item.question}</summary>
+                            <p className="text-gray-700 mt-4">{item.answer}</p>
+                        </details>
+                    ))}
                 </div>
             </div>
 
