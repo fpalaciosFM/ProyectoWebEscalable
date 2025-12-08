@@ -1,83 +1,90 @@
-# 🔭 Portal de ciencia - Proyecto de Divulgación
+# 🔭 Puentes de 100cia — Portal de divulgación científica
 
-Este proyecto es una aplicación web SPA (Single Page Application) diseñada para la divulgación científica. Actualmente funciona como un prototipo estático de alto rendimiento, pero cuenta con una arquitectura escalable preparada para migrar a un backend en tiempo real (Firebase/Supabase) sin necesidad de reescribir el frontend.
+Proyecto web para apoyar talleres de divulgación científica dirigidos a niños. La web muestra actividades, materiales de apoyo, y facilita la transparencia del programa — incluida una sección para que personas contribuyan como donantes, voluntarios o proponiendo experimentos.
+
+## 🧩 Estado actual y novedades
+
+- Sitio base construido con React + Vite.
+- Páginas principales: `Home`, `Experimentos` y `Contribuir` (esta última añade tabs para **Donar**, **Ser Voluntario** y **Proponer Experimentos**).
+- Se añadió un componente reutilizable `NavBar` con control de ruta activa y dropdown para `Contribuir`.
+
+Cambios recientes (commit): `16cee47` — `feat(ui): añadir NavBar reutilizable y página Contribuir`.
 
 ## 🚀 Stack Tecnológico
 
-* **Core:** React + Vite
-* **Lenguaje:** JavaScript (ES6+)
-* **Enrutamiento:** React Router DOM (HashRouter)
-* **Despliegue:** GitHub Pages (automatizado con `gh-pages`)
-* **Estilos:** Tailwind CSS v4
+- React 19
+- Vite
+- React Router DOM (HashRouter)
+- Tailwind CSS
+- ESLint
+- GitHub Pages (gh-pages)
 
 ## 🛠️ Requisitos Previos
 
-Para ejecutar este proyecto localmente necesitas tener instalado:
+- Node.js (LTS recomendado)
+- Git
 
-* **Node.js** (Versión LTS recomendada): [Descargar aquí](https://nodejs.org/)
-* **Git**: [Descargar aquí](https://git-scm.com/)
+## 📥 Instalación Rápida
 
-## 📥 Instalación y Configuración
-
-Sigue estos pasos para clonar el repositorio y levantar el entorno de desarrollo:
-
-1.  **Clonar el repositorio:**
-    ```bash
-    git clone https://github.com/fpalaciosFM/ProyectoWebEscalable.git
-    ```
-
-2.  **Entrar a la carpeta del proyecto:**
-    ```bash
-    cd ProyectoWebEscalable
-    ```
-
-3.  **Instalar dependencias:**
-    Este paso es crucial para descargar las librerías necesarias (React, Vite, etc.).
-    ```bash
-    npm install
-    ```
-
-## 💻 Ejecución Local (Modo Desarrollo)
-
-Para iniciar el servidor local con recarga en caliente (HMR):
-
-```bash
-npm run dev
+```powershell
+git clone https://github.com/fpalaciosFM/ProyectoWebEscalable.git
+cd ProyectoWebEscalable
+npm install
 ```
 
-Una vez ejecutado, la aplicación estará disponible generalmente en: `http://localhost:5173/`
+## 💻 Comandos útiles
 
-## 📂 Arquitectura Escalable
+- `npm run dev` — servidor de desarrollo (HMR)
+- `npm run build` — construir para producción
+- `npm run preview` — previsualizar build local
+- `npm run lint` — ejecutar ESLint
+- `npm run deploy` — compilar y desplegar a GitHub Pages
 
-El proyecto sigue una arquitectura de **"Service Layer"** para facilitar la futura integración de Backend:
+## 📁 Estructura principal
 
-* `src/services/`: **Capa de Abstracción.** Aquí reside la lógica de conexión a datos.
-    * *Estado actual:* Lee de un archivo JSON local (`mockUsers.json`) simulando latencia de red.
-    * *Futuro:* Se reemplazará por llamadas a API.
-* `src/pages/`: Vistas principales de la aplicación.
-* `src/components/`: Piezas reutilizables de la interfaz.
-* `src/data/`: Datos simulados (Mock Data) para desarrollo offline.
+- `src/components/` — componentes reutilizables (p. ej. `NavBar.jsx`)
+- `src/pages/` — vistas (Home, Experimentos, Contribuir)
+- `src/services/` — abstracción de acceso a datos (actualmente usa JSON mocks)
+- `src/data/` — datos de ejemplo / mocks
 
-## 🌍 Despliegue (Deploy)
+## 🧭 Sobre la página `Contribuir`
 
-El proyecto está configurado para desplegarse automáticamente en **GitHub Pages**.
+La página `/contribuir` ofrece tres vías para apoyar el proyecto:
 
-1.  Asegúrate de que tus cambios están guardados en la rama `main`.
-2.  Ejecuta el script de despliegue en tu terminal:
-    ```bash
-    npm run deploy
-    ```
-3.  Este comando compilará el proyecto en la carpeta `dist` y lo subirá a la rama `gh-pages`.
+- **Donar Fondos:** opciones predefinidas (ej. $10, $50, $200) y explicación de destino de fondos.
+- **Ser Voluntario:** roles disponibles (facilitador, asistente digital, creador de contenido, coordinador de alianzas) y formulario de interés.
+- **Proponer Experimentos:** permite enviar propuestas con criterios de aceptación (seguridad, accesibilidad, relevancia para 5–12 años).
 
-> **⚠️ Nota sobre Permisos:** Si el despliegue falla en GitHub Actions, ve a *Settings > Code and automation > Actions > General* en tu repositorio, y en "Workflow permissions" selecciona **"Read and write permissions"**.
+Actualmente los formularios y botones son estáticos (mock). La arquitectura está preparada para conectar con pasarelas de pago y APIs en el futuro.
 
-## 🤝 Roadmap del Proyecto
+## ✅ Transparencia y confianza
 
-* [x] Estructura base SPA (Vite + React)
-* [x] Navegación (React Router)
-* [x] Integración de Tailwind CSS
-* [ ] Backend en tiempo real (Firebase)
-* [ ] Pasarela de pago
+Se añadieron elementos para generar confianza en donantes: sección de desglose de gastos en la página `Contribuir`, FAQ y llamadas a la transparencia. Se recomienda agregar reportes descargables (PDF) y un panel de auditoría cuando se integren donaciones reales.
+
+## 🤝 Cómo contribuir al código
+
+- Crea una rama a partir de `main` para cambios significativos: `git checkout -b feat/nombre-de-la-feature`
+- Haz commits claros y atómicos. Usa mensajes semánticos: `feat`, `fix`, `chore`, `docs`.
+- Abre un Pull Request describiendo el cambio y su propósito.
+
+## 📦 Despliegue
+
+Usamos `gh-pages` para desplegar el `dist` en GitHub Pages. El `base` en `vite.config.js` ya está configurado para `/ProyectoWebEscalable/`.
+
+Para desplegar:
+```powershell
+npm run build
+npm run deploy
+```
+
+## 📜 Licencia y contacto
+
+Incluye la licencia del repositorio y datos de contacto en el repositorio (por ejemplo: `LICENSE` y la sección de contacto en el README).
 
 ---
-Para la divulgación de la ciencia.
+
+Si quieres, puedo:
+
+- Añadir una sección con `How to donate` (pasos para conectar una pasarela de pago).
+- Agregar links a los recursos descargables y reportes.
+- Crear un archivo `CONTRIBUTING.md` con más detalles del flujo de PR y estilo.
