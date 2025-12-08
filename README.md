@@ -6,16 +6,16 @@ Proyecto web para apoyar talleres de divulgación científica dirigidos a niños
 
 - Sitio base construido con React + Vite.
 - Páginas principales: `Home`, `Experimentos`, `Actividades` (Galería, Eventos-Noticias), `Apóyanos` (Campañas, Donativos, Voluntariado, Propuestas) y `Nosotros`.
-  - **Apóyanos:** reorganizado con cuatro opciones: Campañas Activas, Donación General, Voluntariado, Proponer Ideas.
+  - **Apóyanos:** reorganizado con enlaces directos: Formas de Contribuir, Campañas Activas, Donación General, Voluntariado, Proponer Experimento.
+  - **Voluntariado y Proponer Experimento:** páginas dedicadas separadas para mejor UX y SEO.
   - **Campañas:** sistema completo de recaudación de fondos con muro interactivo de ladrillos, donaciones simuladas y rastreo de contribuciones.
   - **Nosotros:** misión, visión, qué hacemos, impacto/números clave, equipo, aliados, testimonios, cronograma y contacto con carrusel de momentos.
   - **Galería:** galería de fotos filtrable por categoría con visor modal.
   - **Eventos-Noticias:** calendario interactivo, próximos eventos, últimas noticias, newsletter.
-- **Componentes reutilizables (21 totales):**
+- **Componentes reutilizables (23 totales):**
   - Estructura: `NavBar` (responsive), `Footer`, `Hero`, `ExplorationCard`, `FAQCard`
-  - Tarjetas: `TeamCard`, `StatsCounter`, `EventCard`, `NoticiaCard`, `CampanaCard`
+  - Tarjetas: `TeamCard`, `StatsCounter`, `EventCard`, `NoticiaCard`, `CampanaCard`, `ExperimentCard`
   - Media: `Carrusel`, `SocialIcon`, `Calendario`
-  - Antiguos: `Experimentos` (página)
 - **Hooks personalizados:** `useScrollTop` para scroll automático al navegar.
 - **Datos separados (7 archivos):** `homeData.js`, `contribuirData.js`, `nosotrosData.js`, `eventosNoticiasData.js`, `galeriaData.js`, `campanasData.js`, `mockExperimentos.json`
   - Arquitectura preparada para conectar a APIs sin refactorizar componentes
@@ -65,10 +65,12 @@ npm install
   - **Layout:** `NavBar.jsx` (navegación responsiva), `Footer.jsx` (pie reutilizable), `Hero.jsx` (sección hero flexible)
   - **Cards:** `TeamCard.jsx`, `StatsCounter.jsx`, `EventCard.jsx`, `NoticiaCard.jsx`, `FAQCard.jsx` (accordion), `ExplorationCard.jsx` (exploración)
   - **Media:** `Carrusel.jsx` (carrusel animado), `SocialIcon.jsx` (botón red social), `Calendario.jsx` (calendario interactivo)
-- `src/pages/` — vistas principales (8 páginas):
+- `src/pages/` — vistas principales (10 páginas):
   - `Home.jsx` - landing page rediseñada
   - `Nosotros.jsx` - página sobre nosotros
-  - `Contribuir.jsx` - formas de colaborar
+  - `Contribuir.jsx` - hub de formas de colaborar
+  - `Voluntariado.jsx` - página dedicada a voluntariado
+  - `ProponerExperimento.jsx` - página dedicada a propuestas
   - `EventosNoticias.jsx` - eventos y noticias
   - `Galeria.jsx` - galería de fotos
   - `Experimentos.jsx` - lista de experimentos
@@ -89,10 +91,27 @@ npm install
 ## 🧭 Páginas principales
 
 ### Contribuir (`/contribuir`)
-Ofrece tres vías para apoyar el proyecto:
-- **Donar Fondos:** opciones predefinidas y desglose de destino de fondos.
-- **Ser Voluntario:** roles disponibles y formulario de interés.
-- **Proponer Experimentos:** envío de propuestas con criterios de aceptación.
+Página hub que centraliza las tres vías para apoyar el proyecto:
+- **Stats de impacto:** métricas visuales (niños impactados, voluntarios activos, fondos donados).
+- **Tarjetas navegables:** enlaces a Donar Fondos, Ser Voluntario y Proponer Experimentos.
+- **Tabla comparativa:** información detallada de cada forma de contribuir con beneficios e impacto estimado.
+
+### Voluntariado (`/voluntariado`)
+Página dedicada completa para voluntarios:
+- **Por qué ser voluntario:** beneficios de impacto, crecimiento y comunidad.
+- **Roles disponibles:** 4 roles con descripción, tiempo requerido y modalidad (facilitador, asistente digital, creador de contenido, coordinador de alianzas).
+- **Beneficios detallados:** certificado, experiencia, red, flexibilidad, recursos, impacto.
+- **FAQs:** preguntas sobre experiencia requerida, tiempo, ubicación y compromiso.
+- **Testimonios:** historias de voluntarios actuales con comillas visuales.
+- **Formulario de solicitud:** mock para registro de interés.
+
+### Proponer Experimento (`/proponer-experimento`)
+Página dedicada para propuestas y colaboradores:
+- **Categorías buscadas:** experimentos simples, colaboradores expertos, temas de interés, impacto local.
+- **Ejemplos exitosos:** casos de experimentos previamente implementados con métricas de impacto.
+- **Criterios de evaluación:** seguridad, claridad, accesibilidad, interés educativo, duración.
+- **Formulario completo:** nombre, email, título, descripción, materiales, clasificación (tipo, nivel, duración).
+- **FAQs:** tiempo de revisión, criterios de aceptación, múltiples propuestas, reconocimiento.
 
 ### Nosotros (`/nosotros`)
 Página informativa con diseño ilustrado que incluye:
@@ -164,7 +183,12 @@ Centraliza información de actividades y novedades:
 
 Actualmente los formularios y botones son estáticos (mock). La arquitectura está preparada para conectar con pasarelas de pago y APIs en el futuro.
 
-**Refactorización reciente (Sesión actual):**
+**Refactorización reciente:**
+- ✅ Sistema completo de campañas con 17 campañas y muro interactivo de donaciones
+- ✅ Separación de Voluntariado y Proponer Experimento en páginas dedicadas
+- ✅ Refactorización de Contribuir como página hub
+- ✅ Corrección de atributos en data (nosotrosData.js: text/location, contribuirData.js: titulo/descripcion)
+- ✅ Mejora visual de testimonios con comillas decorativas grandes
 - ✅ Creación de 5 archivos de datos centralizados
 - ✅ Creación de 4 componentes nuevos reutilizables (Footer, Hero, ExplorationCard, FAQCard)
 - ✅ Hook `useScrollTop` reutilizable en todas las páginas
@@ -207,13 +231,15 @@ Todos los botones principales y CTAs usan la clase `.btn-main` para asegurar:
 ## 📱 NavBar responsive (móvil)
 
 - En pantallas pequeñas el `NavBar` muestra un botón hamburguesa que abre un panel con los enlaces principales.
-- Incluye dropdown "Explorar" que agrupa: Experimentos, Galería, Eventos y Noticias.
-- La sección **Contribuir** incluye sub-enlaces que utilizan el query param `tab` para identificar la subsección activa. Ejemplos:
-	- `#/contribuir?tab=donar` — Donar Fondos (resaltado cuando `tab=donar`)
-	- `#/contribuir?tab=voluntario` — Ser Voluntario (resaltado cuando `tab=voluntario`)
-	- `#/contribuir?tab=proponer` — Proponer Experimentos (resaltado cuando `tab=proponer`)
-
-- QA rápida: abrir DevTools en modo móvil → abrir menú hamburguesa → comprobar que al pulsar el sub-enlace correspondiente se navega a la sección y el panel se cierra automáticamente.
+- Incluye dropdown "Actividades" que agrupa: Experimentos, Galería, Eventos y Noticias.
+- Dropdown "Apóyanos" con enlaces directos a:
+  - 🌟 Formas de Contribuir (`/contribuir`)
+  - 💙 Campañas Activas (`/campanas`)
+  - 💰 Donación General (`/campanas/donacion-general`)
+  - 🤝 Voluntariado (`/voluntariado`)
+  - 💡 Proponer Experimento (`/proponer-experimento`)
+- Los enlaces se resaltan automáticamente cuando la ruta actual coincide.
+- QA rápida: abrir DevTools en modo móvil → abrir menú hamburguesa → comprobar que al pulsar un enlace se navega correctamente y el panel se cierra automáticamente.
 
 
 ## ✅ Transparencia y confianza

@@ -1,6 +1,21 @@
 /**
- * Datos mock para página Contribuir
- * Incluye: opciones de donación, roles de voluntarios, criterios de propuestas
+ * Datos mock para página Contribuir, Voluntariado y Proponer Experimento
+ * Incluye: opciones de donación, roles de voluntarios, tipos de propuestas, FAQs
+ * 
+ * Estructura de volunteerRoles:
+ * - id: identificador único
+ * - titulo: nombre del rol
+ * - emoji: icono representativo
+ * - descripcion: descripción del rol
+ * - tiempo: tiempo requerido
+ * - lugar: modalidad (Remoto/Presencial/Flexible)
+ * - color: color para identificación visual
+ * 
+ * Estructura de proposalTypes:
+ * - id: identificador único
+ * - titulo: tipo de propuesta
+ * - emoji: icono representativo
+ * - descripcion: descripción del tipo
  */
 
 export const donationOptions = [

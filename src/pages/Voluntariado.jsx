@@ -6,15 +6,19 @@ import { volunteerRoles } from '../data/contribuirData';
 
 /**
  * Página: Voluntariado
- * Centraliza toda la información y formulario para ser voluntario en Puentes de 100cia.
+ * Página dedicada completa para voluntarios de Puentes de 100cia.
  * 
- * Características:
- * - Descripción clara de la oportunidad
- * - Roles disponibles con detalles
- * - Beneficios de ser voluntario
- * - Formulario de interés (mock)
+ * Incluye:
+ * - Hero section con gradiente personalizado
+ * - Por qué ser voluntario (3 beneficios clave)
+ * - Roles disponibles con detalles (usa atributos: titulo, descripcion, tiempo, lugar)
+ * - Beneficios detallados (6 categorías)
+ * - FAQs sobre voluntariado
+ * - Testimonios de voluntarios actuales
+ * - Formulario de solicitud (mock)
  * 
- * Datos: Los roles y FAQs vienen de contribuirData.js
+ * Datos: volunteerRoles viene de contribuirData.js
+ * Atributos de roles: id, titulo, emoji, descripcion, tiempo, lugar, color
  */
 
 const Voluntariado = () => {
@@ -31,7 +35,7 @@ const Voluntariado = () => {
                         🤝 Únete a Nuestro Equipo
                     </h1>
                     <p className="text-lg md:text-xl opacity-90 max-w-2xl mx-auto">
-                        Ayúdanos a llevar la ciencia a más comunidades. Tu pasión por la educación 
+                        Ayúdanos a llevar la ciencia a más comunidades. Tu pasión por la educación
                         puede transformar la vida de cientos de niños.
                     </p>
                 </div>
@@ -46,7 +50,7 @@ const Voluntariado = () => {
                             <div className="text-4xl mb-4">💡</div>
                             <h3 className="text-xl font-bold text-neutral-800 mb-3">Impacto Real</h3>
                             <p className="text-neutral-600">
-                                Cada taller que facilitas impacta directamente en decenas de niños, 
+                                Cada taller que facilitas impacta directamente en decenas de niños,
                                 inspirando futuras carreras científicas.
                             </p>
                         </div>
@@ -54,7 +58,7 @@ const Voluntariado = () => {
                             <div className="text-4xl mb-4">🌱</div>
                             <h3 className="text-xl font-bold text-neutral-800 mb-3">Crecimiento Personal</h3>
                             <p className="text-neutral-600">
-                                Mejora tus habilidades de comunicación, liderazgo y enseñanza en un 
+                                Mejora tus habilidades de comunicación, liderazgo y enseñanza en un
                                 ambiente colaborativo y amigable.
                             </p>
                         </div>
@@ -62,7 +66,7 @@ const Voluntariado = () => {
                             <div className="text-4xl mb-4">🤗</div>
                             <h3 className="text-xl font-bold text-neutral-800 mb-3">Comunidad</h3>
                             <p className="text-neutral-600">
-                                Forma parte de una red de profesionales y entusiastas comprometidos 
+                                Forma parte de una red de profesionales y entusiastas comprometidos
                                 con la educación científica.
                             </p>
                         </div>
@@ -73,36 +77,32 @@ const Voluntariado = () => {
                 <section className="mb-16">
                     <h2 className="text-3xl font-bold text-neutral-800 mb-8">Roles de Voluntarios</h2>
                     <p className="text-neutral-600 text-lg mb-8">
-                        Tenemos múltiples formas de contribuir. Elige el rol que mejor se ajuste 
+                        Tenemos múltiples formas de contribuir. Elige el rol que mejor se ajuste
                         a tu disponibilidad, habilidades e intereses.
                     </p>
                     <div className="space-y-6">
-                        {volunteerRoles.map((role, index) => (
-                            <div 
-                                key={role.id} 
-                                className="card-base p-8 border-l-4" 
-                                style={{ borderColor: role.borderColor }}
+                        {volunteerRoles.map((role) => (
+                            <div
+                                key={role.id}
+                                className="card-base p-8 border-l-4 border-indigo-600"
                             >
                                 <div className="flex items-start gap-4">
                                     <div className="text-4xl">{role.emoji}</div>
                                     <div className="flex-1">
-                                        <h3 className="text-2xl font-bold mb-2" style={{ color: role.borderColor }}>
-                                            {role.title}
+                                        <h3 className="text-2xl font-bold mb-2 text-indigo-600">
+                                            {role.titulo}
                                         </h3>
                                         <p className="text-neutral-700 mb-3 text-lg">
-                                            {role.description}
+                                            {role.descripcion}
                                         </p>
-                                        <p className="text-neutral-600 mb-4">
-                                            {role.details}
-                                        </p>
-                                        <div className="flex flex-wrap gap-2">
+                                        <p className="text-neutral-600">
                                             <span className="badge-base bg-neutral-100 text-neutral-700">
-                                                ⏱️ Flexible
+                                                ⏱️ Tiempo: {role.tiempo}
                                             </span>
                                             <span className="badge-base bg-neutral-100 text-neutral-700">
-                                                📍 Remoto/Presencial
+                                                📍 Lugar: {role.lugar}
                                             </span>
-                                        </div>
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -173,7 +173,7 @@ const Voluntariado = () => {
                                 ¿Necesito tener experiencia científica?
                             </summary>
                             <p className="text-neutral-600 mt-4 ml-6">
-                                No es necesario. Lo más importante es tu pasión por la educación y tu disposición 
+                                No es necesario. Lo más importante es tu pasión por la educación y tu disposición
                                 a aprender. Proporcionamos toda la capacitación y materiales que necesitas.
                             </p>
                         </details>
@@ -183,7 +183,7 @@ const Voluntariado = () => {
                                 ¿Cuánto tiempo necesito dedicar?
                             </summary>
                             <p className="text-neutral-600 mt-4 ml-6">
-                                Depende del rol que elijas. Algunos voluntarios participan en 1-2 talleres mensuales, 
+                                Depende del rol que elijas. Algunos voluntarios participan en 1-2 talleres mensuales,
                                 otros dedican más tiempo. Tú controlas tu disponibilidad.
                             </p>
                         </details>
@@ -193,7 +193,7 @@ const Voluntariado = () => {
                                 ¿Puedo ser voluntario desde cualquier lugar?
                             </summary>
                             <p className="text-neutral-600 mt-4 ml-6">
-                                Sí. Tenemos roles tanto presenciales (en comunidades específicas) como remotos 
+                                Sí. Tenemos roles tanto presenciales (en comunidades específicas) como remotos
                                 (diseño de experimentos, revisión de contenidos, etc.).
                             </p>
                         </details>
@@ -203,7 +203,7 @@ const Voluntariado = () => {
                                 ¿Hay un compromiso mínimo?
                             </summary>
                             <p className="text-neutral-600 mt-4 ml-6">
-                                Recomendamos un mínimo de 3 meses para que puedas sentir el impacto real. 
+                                Recomendamos un mínimo de 3 meses para que puedas sentir el impacto real.
                                 Después, puedes continuar o pausar cuando lo necesites.
                             </p>
                         </details>
@@ -214,7 +214,7 @@ const Voluntariado = () => {
                 <section className="card-base p-8 bg-gradient-to-br from-indigo-600 to-blue-600 text-white rounded-2xl text-center mb-8">
                     <h2 className="text-3xl font-bold mb-4">¿Listo para Empezar?</h2>
                     <p className="text-lg opacity-90 mb-8 max-w-2xl mx-auto">
-                        Completa el formulario y nos pondremos en contacto contigo en 48 horas para 
+                        Completa el formulario y nos pondremos en contacto contigo en 48 horas para
                         discutir la mejor forma de colaborar.
                     </p>
                     <button className="bg-white text-indigo-600 font-bold py-3 px-8 rounded-full hover:bg-gray-100 transition text-lg">
@@ -228,7 +228,7 @@ const Voluntariado = () => {
                     <div className="grid md:grid-cols-3 gap-6">
                         <div className="card-base p-6 border-t-4 border-indigo-600">
                             <p className="text-neutral-600 mb-4 italic">
-                                "La experiencia más gratificante de mi vida. Ver cómo los ojos de los niños 
+                                "La experiencia más gratificante de mi vida. Ver cómo los ojos de los niños
                                 se iluminan cuando descubren la ciencia es inolvidable."
                             </p>
                             <p className="font-bold text-neutral-800">María González</p>
@@ -236,7 +236,7 @@ const Voluntariado = () => {
                         </div>
                         <div className="card-base p-6 border-t-4 border-blue-600">
                             <p className="text-neutral-600 mb-4 italic">
-                                "Como ingeniero, encontré en Puentes la forma perfecta de devolver a mi comunidad 
+                                "Como ingeniero, encontré en Puentes la forma perfecta de devolver a mi comunidad
                                 mientras desarrollo habilidades de liderazgo."
                             </p>
                             <p className="font-bold text-neutral-800">Carlos Rodríguez</p>
@@ -244,7 +244,7 @@ const Voluntariado = () => {
                         </div>
                         <div className="card-base p-6 border-t-4 border-cyan-600">
                             <p className="text-neutral-600 mb-4 italic">
-                                "Desde casa, diseño experimentos para comunidades rurales. Es increíble contribuir 
+                                "Desde casa, diseño experimentos para comunidades rurales. Es increíble contribuir
                                 sin sacrificar mi trabajo principal."
                             </p>
                             <p className="font-bold text-neutral-800">Ana Martínez</p>

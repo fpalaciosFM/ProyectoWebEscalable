@@ -1,6 +1,11 @@
 /**
  * Datos mock para página Nosotros
- * Incluye: equipo, testimonios, cronograma, aliados
+ * Incluye: equipo, carrusel de imágenes, estadísticas de impacto, testimonios, cronograma
+ * 
+ * Estructura de testimonies:
+ * - text: texto del testimonio (sin comillas, se agregan en JSX)
+ * - author: nombre y rol del autor
+ * - location: ubicación del autor
  */
 
 export const teamMembers = [
@@ -44,17 +49,17 @@ export const impactStats = [
 
 export const testimonies = [
     {
-        text: '"Mi hija volvió a casa emocionada, construyó un volcán y quiso aprender más. Ahora hace pequeñas investigaciones con sus amigos."',
+        text: 'Mi hija volvió a casa emocionada, construyó un volcán y quiso aprender más. Ahora hace pequeñas investigaciones con sus amigos.',
         author: 'María, madre',
         location: 'Ciudad de México'
     },
     {
-        text: '"Como docente, las guías nos permitieron replicar experimentos con pocos recursos y gran impacto en la comprensión de conceptos."',
+        text: 'Como docente, las guías nos permitieron replicar experimentos con pocos recursos y gran impacto en la comprensión de conceptos.',
         author: 'José, profesor',
         location: 'Veracruz'
     },
     {
-        text: '"El voluntariado en Puentes de 100cia me enseñó que la ciencia es para todos. Ahora inspiro a mis estudiantes cada día."',
+        text: 'El voluntariado en Puentes de 100cia me enseñó que la ciencia es para todos. Ahora inspiro a mis estudiantes cada día.',
         author: 'Andrea, voluntaria',
         location: 'Guadalajara'
     }

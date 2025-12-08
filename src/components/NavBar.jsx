@@ -36,10 +36,6 @@ const NavBar = () => {
     const [isMobileOpen, setIsMobileOpen] = useState(false);
     const location = useLocation();
 
-    // read query param 'tab' to highlight mobile Contribuir sublinks
-    const searchParams = new URLSearchParams(location.search);
-    const activeTab = searchParams.get('tab');
-
     const isActive = (path) => {
         // If checking the root path, require exact match so '/' isn't active for all routes
         if (path === '/') return location.pathname === '/';
@@ -142,20 +138,27 @@ const NavBar = () => {
                             <div className="relative inline-block">
                                 <button
                                     onClick={toggleDropdown}
-                                    className={`font-bold py-2 px-6 rounded-full transition flex items-center gap-2 ${isActive('/contribuir') || isActive('/campanas') ? 'bg-indigo-700 text-white ring-2 ring-indigo-200' : 'bg-indigo-600 text-white hover:bg-indigo-700'}`}
+                                    className={`font-bold py-2 px-6 rounded-full transition flex items-center gap-2 ${isActive('/contribuir') || isActive('/campanas') || isActive('/voluntariado') || isActive('/proponer-experimento') ? 'bg-indigo-700 text-white ring-2 ring-indigo-200' : 'bg-indigo-600 text-white hover:bg-indigo-700'}`}
                                 >
                                     Apóyanos
                                     <span className={`text-sm transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`}>
                                         ▼
                                     </span>
                                 </button>
-                                {(isActive('/contribuir') || isActive('/campanas')) && (
+                                {(isActive('/contribuir') || isActive('/campanas') || isActive('/voluntariado') || isActive('/proponer-experimento')) && (
                                     <span className="absolute left-0 right-0 -bottom-2 h-0.5 bg-indigo-600 rounded" />
                                 )}
                             </div>
 
                             {isDropdownOpen && (
                                 <div className="absolute right-0 mt-2 w-56 bg-white border border-gray-200 rounded-lg shadow-lg z-10">
+                                    <Link
+                                        to="/contribuir"
+                                        onClick={() => setIsDropdownOpen(false)}
+                                        className="block px-6 py-3 text-gray-800 hover:bg-indigo-50 font-medium border-b hover:text-indigo-600 transition"
+                                    >
+                                        🌟 Formas de Contribuir
+                                    </Link>
                                     <Link
                                         to="/campanas"
                                         onClick={() => setIsDropdownOpen(false)}
@@ -286,7 +289,7 @@ const NavBar = () => {
                             <button
                                 onClick={toggleDropdown}
                                 className={`w-full text-left px-3 py-2 rounded-md text-base font-medium flex items-center justify-between ${
-                                    isActive('/contribuir') || isActive('/campanas')
+                                    isActive('/contribuir') || isActive('/campanas') || isActive('/voluntariado') || isActive('/proponer-experimento')
                                         ? 'text-indigo-600 font-semibold bg-indigo-50'
                                         : 'text-gray-700 hover:bg-gray-50'
                                 }`}
@@ -298,6 +301,20 @@ const NavBar = () => {
                             </button>
                             {isDropdownOpen && (
                                 <div className="pl-4 space-y-2 bg-gray-50 rounded-md mt-1">
+                                    <Link
+                                        to="/contribuir"
+                                        onClick={() => {
+                                            setIsDropdownOpen(false);
+                                            setIsMobileOpen(false);
+                                        }}
+                                        className={`block px-3 py-2 rounded-md text-base font-medium ${
+                                            isActive('/contribuir')
+                                                ? 'text-indigo-600 font-semibold'
+                                                : 'text-gray-700 hover:text-indigo-600'
+                                        }`}
+                                    >
+                                        🌟 Formas de Contribuir
+                                    </Link>
                                     <Link
                                         to="/campanas"
                                         onClick={() => {

@@ -1,3 +1,17 @@
+/**
+ * Página Nosotros - Información completa sobre la organización
+ * 
+ * Incluye:
+ * - Misión, visión y objetivos
+ * - Qué hacemos (5 áreas principales)
+ * - Estadísticas de impacto con contadores animados
+ * - Carrusel de momentos destacados
+ * - Equipo con tarjetas de miembros
+ * - Aliados organizados por categorías
+ * - Testimonios de beneficiarios (usa atributos: text, author, location)
+ * - Cronograma/línea de tiempo desde 2019
+ * - Información de contacto y redes sociales
+ */
 import React from 'react';
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
@@ -173,7 +187,7 @@ const Nosotros = () => {
                     <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
                         {testimonies.map((testimony) => (
                             <div key={testimony.author} className="bg-white p-6 rounded-xl shadow-md">
-                                <p className="text-gray-800 italic mb-4">"{testimony.quote}"</p>
+                                <p className="text-gray-800 italic mb-4">"{testimony.text}"</p>
                                 <div className="flex items-center gap-3">
                                     <div className="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center">
                                         <svg className="w-5 h-5 text-indigo-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -182,7 +196,7 @@ const Nosotros = () => {
                                     </div>
                                     <div>
                                         <div className="font-semibold">{testimony.author}</div>
-                                        <div className="text-sm text-gray-500">{testimony.city}</div>
+                                        <div className="text-sm text-gray-500">{testimony.location}</div>
                                     </div>
                                 </div>
                             </div>
