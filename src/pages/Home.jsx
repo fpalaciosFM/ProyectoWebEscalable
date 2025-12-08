@@ -2,6 +2,11 @@
 import { Link } from 'react-router-dom';
 import NavBar from '../components/NavBar';
 
+/**
+ * Home Page
+ * Página de inicio con hero, resumen de características y llamada a la acción.
+ * - Importante: usa `NavBar` como encabezado común de la aplicación
+ */
 const Home = () => {
     return (
         <div className="min-h-screen bg-slate-50 font-sans text-gray-800">

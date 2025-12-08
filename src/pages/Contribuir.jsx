@@ -2,6 +2,16 @@ import { useSearchParams, Link } from 'react-router-dom';
 import { useState } from 'react';
 import NavBar from '../components/NavBar';
 
+/**
+ * Contribuir Page
+ * Página que centraliza las formas de colaborar con el proyecto:
+ * - Donar fondos (opciones estáticas por ahora)
+ * - Ser voluntario (lista de roles y formulario de interés)
+ * - Proponer experimentos (formulario de envío)
+ *
+ * La tab activa se controla mediante el query param `?tab=` (p. ej. `?tab=donar`).
+ */
+
 const Contribuir = () => {
     const [searchParams] = useSearchParams();
     const activeTab = searchParams.get('tab') || 'donar';

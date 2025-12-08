@@ -76,15 +76,3 @@ Para desplegar:
 npm run build
 npm run deploy
 ```
-
-## 📜 Licencia y contacto
-
-Incluye la licencia del repositorio y datos de contacto en el repositorio (por ejemplo: `LICENSE` y la sección de contacto en el README).
-
----
-
-Si quieres, puedo:
-
-- Añadir una sección con `How to donate` (pasos para conectar una pasarela de pago).
-- Agregar links a los recursos descargables y reportes.
-- Crear un archivo `CONTRIBUTING.md` con más detalles del flujo de PR y estilo.

@@ -1,6 +1,16 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
+/**
+ * NavBar
+ * Barra de navegación reutilizable para la aplicación.
+ * - Muestra logo y enlaces principales
+ * - Controla el estado activo según la ruta usando `useLocation`
+ * - Incluye un botón "Contribuir" con dropdown para acciones rápidas
+ *
+ * Diseño pensado para ser usado en todas las páginas principales (Home, Experimentos, Contribuir).
+ */
+
 const NavBar = () => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const location = useLocation();
