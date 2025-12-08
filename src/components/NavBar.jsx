@@ -71,10 +71,24 @@ const NavBar = () => {
                                 <span className="absolute left-0 right-0 -bottom-2 h-0.5 bg-indigo-600 rounded" />
                             )}
                         </Link>
-                        <a href="#nosotros" className="relative text-gray-600 hover:text-indigo-600 font-medium transition px-1">
+                        <Link to="/galeria" className={`relative font-medium transition px-1 ${isActive('/galeria') ? 'text-indigo-600 font-semibold' : 'text-gray-600 hover:text-indigo-600'}`}>
+                            Galería
+                            {isActive('/galeria') && (
+                                <span className="absolute left-0 right-0 -bottom-2 h-0.5 bg-indigo-600 rounded" />
+                            )}
+                        </Link>
+                        <Link to="/nosotros" className={`relative font-medium transition px-1 ${isActive('/nosotros') ? 'text-indigo-600 font-semibold' : 'text-gray-600 hover:text-indigo-600'}`}>
                             Nosotros
-                            <span className="absolute left-0 right-0 -bottom-2 h-0.5 bg-transparent rounded transform" />
-                        </a>
+                            {isActive('/nosotros') && (
+                                <span className="absolute left-0 right-0 -bottom-2 h-0.5 bg-indigo-600 rounded" />
+                            )}
+                        </Link>
+                        <Link to="/eventos-noticias" className={`relative font-medium transition px-1 ${isActive('/eventos-noticias') ? 'text-indigo-600 font-semibold' : 'text-gray-600 hover:text-indigo-600'}`}>
+                            Eventos
+                            {isActive('/eventos-noticias') && (
+                                <span className="absolute left-0 right-0 -bottom-2 h-0.5 bg-indigo-600 rounded" />
+                            )}
+                        </Link>
 
                         {/* Desktop Contribuir button + dropdown */}
                         <div className="relative">
@@ -148,9 +162,15 @@ const NavBar = () => {
                         <Link to="/experimentos" onClick={() => setIsMobileOpen(false)} className={`block px-3 py-2 rounded-md text-base font-medium ${isActive('/experimentos') ? 'text-indigo-600 font-semibold' : 'text-gray-700 hover:bg-gray-50'}`}>
                             Experimentos
                         </Link>
-                        <a href="#nosotros" onClick={() => setIsMobileOpen(false)} className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50">
+                        <Link to="/galeria" onClick={() => setIsMobileOpen(false)} className={`block px-3 py-2 rounded-md text-base font-medium ${isActive('/galeria') ? 'text-indigo-600 font-semibold' : 'text-gray-700 hover:bg-gray-50'}`}>
+                            Galería
+                        </Link>
+                        <Link to="/nosotros" onClick={() => setIsMobileOpen(false)} className={`block px-3 py-2 rounded-md text-base font-medium ${isActive('/nosotros') ? 'text-indigo-600 font-semibold' : 'text-gray-700 hover:bg-gray-50'}`}>
                             Nosotros
-                        </a>
+                        </Link>
+                        <Link to="/eventos-noticias" onClick={() => setIsMobileOpen(false)} className={`block px-3 py-2 rounded-md text-base font-medium ${isActive('/eventos-noticias') ? 'text-indigo-600 font-semibold' : 'text-gray-700 hover:bg-gray-50'}`}>
+                            Eventos
+                        </Link>
 
                         {/* Mobile Contribuir expanded section */}
                         <div className="mt-2 border-t border-gray-100 pt-2 px-3">

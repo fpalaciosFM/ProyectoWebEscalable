@@ -5,12 +5,14 @@ Proyecto web para apoyar talleres de divulgación científica dirigidos a niños
 ## 🧩 Estado actual y novedades
 
 - Sitio base construido con React + Vite.
-- Páginas principales: `Home`, `Experimentos`, `Contribuir` y `Nosotros`.
+- Páginas principales: `Home`, `Experimentos`, `Contribuir`, `Nosotros`, `Galería` y `Eventos-Noticias`.
   - **Contribuir:** tabs para Donar, Ser Voluntario y Proponer Experimentos.
-  - **Nosotros:** misión, visión, qué hacemos, impacto/números clave, equipo, aliados, testimonios, cronograma y contacto.
-- Componentes reutilizables: `NavBar` (responsive con hamburger), `TeamCard`, `StatsCounter`, `SocialIcon`.
+  - **Nosotros:** misión, visión, qué hacemos, impacto/números clave, equipo, aliados, testimonios, cronograma y contacto con carrusel de momentos.
+  - **Galería:** galería de fotos filtrable por categoría con visor modal.
+  - **Eventos-Noticias:** calendario interactivo, próximos eventos, últimas noticias, newsletter.
+- Componentes reutilizables: `NavBar` (responsive), `TeamCard`, `StatsCounter`, `SocialIcon`, `Carrusel`, `EventCard`, `NoticiaCard`, `Calendario`.
 - Integración de `react-icons` para iconos de redes sociales optimizados.
-- **UX mejorada:** scroll automático al tope al navegar entre páginas para mejor experiencia de usuario.
+- **UX mejorada:** scroll automático al tope al navegar entre páginas.
 
 ## 🚀 Stack Tecnológico
 
@@ -45,8 +47,16 @@ npm install
 
 ## 📁 Estructura principal
 
-- `src/components/` — componentes reutilizables (`NavBar.jsx`, `TeamCard.jsx`, `StatsCounter.jsx`, `SocialIcon.jsx`)
-- `src/pages/` — vistas (Home, Experimentos, Contribuir, Nosotros)
+- `src/components/` — componentes reutilizables:
+  - `NavBar.jsx` - navegación responsiva
+  - `TeamCard.jsx` - tarjeta de miembro del equipo
+  - `StatsCounter.jsx` - contador de estadísticas
+  - `SocialIcon.jsx` - botón de red social
+  - `Carrusel.jsx` - carrusel animado de imágenes
+  - `EventCard.jsx` - tarjeta de evento
+  - `NoticiaCard.jsx` - tarjeta de noticia
+  - `Calendario.jsx` - calendario interactivo
+- `src/pages/` — vistas (Home, Experimentos, Contribuir, Nosotros, Galería, Eventos-Noticias)
 - `src/services/` — abstracción de acceso a datos (actualmente usa JSON mocks)
 - `src/data/` — datos de ejemplo / mocks
 
@@ -63,11 +73,27 @@ Página informativa con diseño ilustrado que incluye:
 - **Misión y Visión:** propósito del proyecto y metas a 5 años.
 - **Qué hacemos:** talleres, recursos abiertos, formación docente, eventos, kits.
 - **Impacto / Números clave:** métricas visuales (niños impactados, talleres, escuelas, voluntarios).
+- **Carrusel de momentos:** galería animada de fotos con auto-avance y controles interactivos.
 - **Equipo:** tarjetas con avatares SVG, nombre, rol y bio.
 - **Aliados:** categorías (escuelas, centros culturales, ONG) con cards descriptivas.
 - **Testimonios:** citas de beneficiarios (padres, docentes, voluntarios).
 - **Cronograma:** línea de tiempo con hitos desde 2019 hasta próximos pasos.
-- **Contacto:** email, teléfono, ubicación, formulario de contacto y botones de redes sociales.
+- **Contacto:** email, teléfono, ubicación, formulario y redes sociales.
+
+### Galería (`/galeria`)
+Galería de fotos con:
+- Filtros por categoría (Talleres, Eventos, Voluntarios).
+- Grid responsive de imágenes.
+- Visor modal para ver fotos ampliadas.
+- Información detallada de cada foto.
+
+### Eventos y Noticias (`/eventos-noticias`)
+Centraliza información de actividades y novedades:
+- **Próximos eventos:** con fecha, hora, ubicación y opción de registro.
+- **Últimas noticias:** artículos sobre logros, novedades y recursos.
+- **Calendario interactivo:** navegación por meses, resalta días con eventos.
+- **Newsletter:** widget para suscripción.
+- Filtros por categoría para ambas secciones.
 
 Actualmente los formularios y botones son estáticos (mock). La arquitectura está preparada para conectar con pasarelas de pago y APIs en el futuro.
 

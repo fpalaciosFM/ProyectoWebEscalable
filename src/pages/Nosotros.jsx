@@ -4,6 +4,7 @@ import NavBar from '../components/NavBar';
 import TeamCard from '../components/TeamCard';
 import StatsCounter from '../components/StatsCounter';
 import SocialIcon from '../components/SocialIcon';
+import Carrusel from '../components/Carrusel';
 import { Link } from 'react-router-dom';
 
 /**
@@ -15,6 +16,30 @@ const Nosotros = () => {
         { name: 'Carlos Pérez', role: 'Coordinador de Proyectos', bio: 'Gestión y logística para actividades comunitarias.' },
         { name: 'Ana Gómez', role: 'Comunicación y Alianzas', bio: 'Relación con escuelas y organizaciones locales.' },
         { name: 'Fernando Palacios', role: 'Voluntario y Tech', bio: 'Divulgación de ciencia y programador de plataforma web' },
+    ];
+
+    // Datos para el carrusel
+    const imagenesCarrusel = [
+        {
+            src: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400"%3E%3Crect fill="%23f0f4ff" width="800" height="400"/%3E%3Ctext x="400" y="200" font-size="80" fill="%236366f1" text-anchor="middle" dominant-baseline="middle"%3E🧪%3C/text%3E%3C/svg%3E',
+            titulo: 'Talleres Prácticos de Ciencia',
+            descripcion: 'Niños descubriendo los secretos de la química y física a través de experimentos interactivos.'
+        },
+        {
+            src: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400"%3E%3Crect fill="%23f0fdf4" width="800" height="400"/%3E%3Ctext x="400" y="200" font-size="80" fill="%2310b981" text-anchor="middle" dominant-baseline="middle"%3E🎪%3C/text%3E%3C/svg%3E',
+            titulo: 'Eventos Comunitarios',
+            descripcion: 'Feria de ciencia que reúne a cientos de familias interesadas en aprender juntos.'
+        },
+        {
+            src: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400"%3E%3Crect fill="%23fef3c7" width="800" height="400"/%3E%3Ctext x="400" y="200" font-size="80" fill="%23d97706" text-anchor="middle" dominant-baseline="middle"%3E👨%E2%80%8D🏫%3C/text%3E%3C/svg%3E',
+            titulo: 'Formación de Docentes',
+            descripcion: 'Capacitación continua para maestros en metodología STEAM y educación inclusiva.'
+        },
+        {
+            src: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400"%3E%3Crect fill="%23fce7f3" width="800" height="400"/%3E%3Ctext x="400" y="200" font-size="80" fill="%23ec4899" text-anchor="middle" dominant-baseline="middle"%3E🤝%3C/text%3E%3C/svg%3E',
+            titulo: 'Voluntarios en Acción',
+            descripcion: 'Nuestro equipo de voluntarios preparando materiales y apoyando las actividades.'
+        }
     ];
 
     // Scroll to top when component mounts
@@ -93,6 +118,20 @@ const Nosotros = () => {
                         </ul>
                         <p className="text-gray-700">Si tienes una escuela o centro interesado, contáctanos y adaptamos una propuesta según tus necesidades.</p>
                     </section>
+
+                <section className="mb-12">
+                    <h2 className="text-2xl font-bold mb-6">Galería de Momentos</h2>
+                    <p className="text-gray-700 mb-6">Un vistazo a nuestros talleres, eventos y actividades en acción.</p>
+                    <Carrusel images={imagenesCarrusel} autoplayDelay={4000} />
+                    <div className="text-center mt-6">
+                        <Link
+                            to="/galeria"
+                            className="inline-block bg-indigo-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-indigo-700 transition"
+                        >
+                            Ver Galería Completa →
+                        </Link>
+                    </div>
+                </section>
 
                 <section className="mb-12">
                     <h2 className="text-2xl font-bold mb-6">Equipo</h2>
