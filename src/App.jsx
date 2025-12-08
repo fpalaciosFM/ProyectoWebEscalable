@@ -3,6 +3,8 @@ import { HashRouter, Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
 import ListaExperimentos from './pages/Experimentos'
 import Contribuir from './pages/Contribuir'
+import Voluntariado from './pages/Voluntariado'
+import ProponerExperimento from './pages/ProponerExperimento'
 import Nosotros from './pages/Nosotros'
 import Galeria from './pages/Galeria'
 import EventosNoticias from './pages/EventosNoticias'
@@ -17,7 +19,9 @@ import CampanaDetalle from './pages/CampanaDetalle'
  * Rutas:
  * - "/" → Home (landing page)
  * - "/experimentos" → ListaExperimentos
- * - "/contribuir" → Contribuir (donar, voluntario, proponer)
+ * - "/contribuir" → Contribuir (página informativa de contribución)
+ * - "/voluntariado" → Voluntariado (roles, beneficios, formulario de interés)
+ * - "/proponer-experimento" → ProponerExperimento (guía y formulario de propuesta)
  * - "/nosotros" → Nosotros (historia, equipo, impacto)
  * - "/galeria" → Galeria (galería de fotos)
  * - "/eventos-noticias" → EventosNoticias (eventos, noticias, calendario)
@@ -30,6 +34,7 @@ import CampanaDetalle from './pages/CampanaDetalle'
  * - Hooks personalizados: useScrollTop para scroll automático al navegar
  * - Sistema de diseño: variables CSS semánticas + clases reutilizables (.btn-main, .card-*, etc)
  * - Sistema de campañas: Preparado para integración con PayPal/Stripe en el futuro
+ * - Páginas de colaboración: Voluntariado y Proponer separadas para mejor UX
  */
 function App() {
   return (
@@ -38,6 +43,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/experimentos" element={<ListaExperimentos />} />
         <Route path="/contribuir" element={<Contribuir />} />
+        <Route path="/voluntariado" element={<Voluntariado />} />
+        <Route path="/proponer-experimento" element={<ProponerExperimento />} />
         <Route path="/nosotros" element={<Nosotros />} />
         <Route path="/galeria" element={<Galeria />} />
         <Route path="/eventos-noticias" element={<EventosNoticias />} />

@@ -30,6 +30,68 @@
 
 export const campanas = [
     {
+        id: 'donacion-general-permanente',
+        slug: 'donacion-general',
+        titulo: 'Fondo General de Ciencia',
+        descripcion: 'Apoya nuestro trabajo en educación científica sin comprometerte a una campaña específica.',
+        descripcionCompleta: 'El Fondo General nos permite mantener nuestras operaciones, desarrollar nuevos materiales educativos, capacitar voluntarios y llegar a más comunidades. Tu donación va directamente a donde más se necesita en cada momento. Recibirás reportes trimestrales sobre cómo se usa tu aporte.',
+        tipo: 'general',
+        estado: 'activa',
+        metaTotal: 999999, // Meta muy alta, permanentemente activa
+        recaudado: 45000,
+        moneda: 'MXN',
+        fechaInicio: '2024-01-01',
+        fechaFin: '2099-12-31', // Permanente
+        imagen: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400"%3E%3Crect fill="%23f0f9ff" width="800" height="400"/%3E%3Ctext x="400" y="200" font-size="80" fill="%236366f1" text-anchor="middle" dominant-baseline="middle"%3E🔬%3C/text%3E%3C/svg%3E',
+        categoria: 'General',
+        
+        // Visualización especial para donación general
+        visualizacion: {
+            tipo: 'barra-simple',
+            mostrarMetaFija: false // No mostrar meta como objetivo fijo
+        },
+        
+        tipoRecaudacion: 'continua', // Propiedad para identificar recaudación continua
+        
+        beneficios: [
+            'Financiar talleres mensuales en comunidades',
+            'Desarrollo de materiales educativos innovadores',
+            'Capacitación continua de voluntarios',
+            'Mantenimiento de infraestructura y equipos',
+            'Programas de inclusión para niños en situación vulnerable',
+            'Investigación en metodologías de enseñanza de ciencias'
+        ],
+        
+        opcionesDonacion: [
+            { cantidad: 250, descripcion: 'Materiales para 1 taller', emoji: '📚' },
+            { cantidad: 500, descripcion: 'Transporte para 2 comunidades', emoji: '🚌' },
+            { cantidad: 1000, descripcion: 'Equipos para 1 mes', emoji: '⚗️' },
+            { cantidad: 2500, descripcion: 'Capacitación de 5 voluntarios', emoji: '👥' },
+            { cantidad: 5000, descripcion: 'Proyecto especial a tu elección', emoji: '✨' }
+        ],
+        
+        donaciones: [
+            { id: 1, nombre: 'Fundación ABC', cantidad: 5000, fecha: '2024-12-05', mensaje: 'Continuamos apoyando la educación' },
+            { id: 2, nombre: 'Juan Rodríguez', cantidad: 500, fecha: '2024-12-03', mensaje: '' },
+            { id: 3, nombre: 'Empresa Tech SA', cantidad: 10000, fecha: '2024-11-28', mensaje: 'RSE anual' },
+            { id: 4, nombre: 'María López', cantidad: 250, fecha: '2024-11-25', mensaje: 'Cada poco ayuda' },
+            { id: 5, nombre: 'Anónimo', cantidad: 2500, fecha: '2024-11-20', mensaje: 'Excelente trabajo' }
+        ],
+        
+        actualizaciones: [
+            {
+                fecha: '2024-12-01',
+                titulo: 'Reporte de Q4 2024',
+                descripcion: 'Con tus donaciones realizamos 12 talleres en 8 comunidades diferentes, alcanzando a 200+ niños.'
+            },
+            {
+                fecha: '2024-09-15',
+                titulo: 'Certificado fiscal disponible',
+                descripcion: 'Todos los donadores del trimestre pueden descargar su certificado fiscal aquí.'
+            }
+        ]
+    },
+    {
         id: 'muro-ciencia-2024',
         slug: 'muro-ciencia-2024',
         titulo: 'Reconstrucción del Muro de Ciencia',

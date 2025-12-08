@@ -164,25 +164,25 @@ const NavBar = () => {
                                         💙 Campañas Activas
                                     </Link>
                                     <Link
-                                        to="/contribuir?tab=donar"
+                                        to="/campanas/donacion-general"
                                         onClick={() => setIsDropdownOpen(false)}
                                         className="block px-6 py-3 text-gray-800 hover:bg-indigo-50 font-medium border-b hover:text-indigo-600 transition"
                                     >
                                         💰 Donación General
                                     </Link>
                                     <Link
-                                        to="/contribuir?tab=voluntario"
+                                        to="/voluntariado"
                                         onClick={() => setIsDropdownOpen(false)}
                                         className="block px-6 py-3 text-gray-800 hover:bg-indigo-50 font-medium border-b hover:text-indigo-600 transition"
                                     >
                                         🤝 Voluntariado
                                     </Link>
                                     <Link
-                                        to="/contribuir?tab=proponer"
+                                        to="/proponer-experimento"
                                         onClick={() => setIsDropdownOpen(false)}
                                         className="block px-6 py-3 text-gray-800 hover:bg-indigo-50 font-medium hover:text-indigo-600 transition"
                                     >
-                                        💡 Proponer Ideas
+                                        💡 Proponer Experimento
                                     </Link>
                                 </div>
                             )}
@@ -313,13 +313,13 @@ const NavBar = () => {
                                         💙 Campañas Activas
                                     </Link>
                                     <Link
-                                        to="/contribuir?tab=donar"
+                                        to="/campanas/donacion-general"
                                         onClick={() => {
                                             setIsDropdownOpen(false);
                                             setIsMobileOpen(false);
                                         }}
                                         className={`block px-3 py-2 rounded-md text-base font-medium ${
-                                            activeTab === 'donar'
+                                            isActive('/campanas/donacion-general')
                                                 ? 'text-indigo-600 font-semibold'
                                                 : 'text-gray-700 hover:text-indigo-600'
                                         }`}
@@ -327,13 +327,13 @@ const NavBar = () => {
                                         💰 Donación General
                                     </Link>
                                     <Link
-                                        to="/contribuir?tab=voluntario"
+                                        to="/voluntariado"
                                         onClick={() => {
                                             setIsDropdownOpen(false);
                                             setIsMobileOpen(false);
                                         }}
                                         className={`block px-3 py-2 rounded-md text-base font-medium ${
-                                            activeTab === 'voluntario'
+                                            isActive('/voluntariado')
                                                 ? 'text-indigo-600 font-semibold'
                                                 : 'text-gray-700 hover:text-indigo-600'
                                         }`}
@@ -341,18 +341,18 @@ const NavBar = () => {
                                         🤝 Voluntariado
                                     </Link>
                                     <Link
-                                        to="/contribuir?tab=proponer"
+                                        to="/proponer-experimento"
                                         onClick={() => {
                                             setIsDropdownOpen(false);
                                             setIsMobileOpen(false);
                                         }}
                                         className={`block px-3 py-2 rounded-md text-base font-medium ${
-                                            activeTab === 'proponer'
+                                            isActive('/proponer-experimento')
                                                 ? 'text-indigo-600 font-semibold'
                                                 : 'text-gray-700 hover:text-indigo-600'
                                         }`}
                                     >
-                                        💡 Proponer Ideas
+                                        💡 Proponer Experimento
                                     </Link>
                                 </div>
                             )}

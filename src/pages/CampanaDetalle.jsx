@@ -333,6 +333,30 @@ const CampanaDetalle = () => {
                             </section>
                         )}
 
+                        {/* Visualización para donaciones continuas (sin meta fija) */}
+                        {campana.tipoRecaudacion === 'continua' && (
+                            <section className="card-base p-8 bg-gradient-to-br from-emerald-50 to-cyan-50 border-2 border-emerald-200">
+                                <div className="flex items-start gap-6">
+                                    <div className="text-5xl">🌱</div>
+                                    <div className="flex-1">
+                                        <h2 className="text-3xl font-bold text-emerald-800 mb-3">
+                                            Recaudación Continua
+                                        </h2>
+                                        <p className="text-emerald-700 mb-6">
+                                            Este fondo no tiene una meta fija. Tu aporte nos permite mantener nuestras operaciones, 
+                                            desarrollar nuevos programas y responder rápidamente a necesidades emergentes en nuestras comunidades.
+                                        </p>
+                                        <div className="bg-white rounded-xl p-6 border border-emerald-200">
+                                            <p className="text-sm text-neutral-600 mb-2">Total recaudado en 2024</p>
+                                            <p className="text-3xl font-bold text-emerald-600">
+                                                {formatearMoneda(recaudadoSimulado, campana.moneda)}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        )}
+
                         {/* Historia y descripción completa */}
                         <section className="card-base p-8">
                             <h2 className="text-3xl font-bold text-neutral-800 mb-4">
